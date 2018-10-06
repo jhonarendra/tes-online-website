@@ -4,10 +4,15 @@
   <head>
   <?php include 'include/head.php'
   ?>
+
   </head>
+
   <body id="page-top">
+
     <?php include 'include/navbar.php' ?>
+
     <div id="wrapper">
+
       <!-- Sidebar -->
       <?php include 'include/sidebar.php'?>
 
@@ -27,7 +32,7 @@
           <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-table"></i>
-              Tambah Soal</div>
+              Data Table Example</div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -36,32 +41,15 @@
                       <th>No</th>
                       <th>Jenis Soal</th>
                       <th>Tanggal</th>
-                      <th>Jumlah Soal</th>
-                      <th>Soal & Jawaban</th>
-                      <th>Aksi</th>
+                      <th>List Nilai</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>1</td>
-                      <td>Quis 1</td>
-                      <td>2018-11-11</td>
-                      <td>20</td>
-                      <td>
-                      <button class='btn btn-success' type="submit">
-                      <i class="far fa-folder-open"></i> Open
-                      </button>
-                      </td>
-                      <td>
-                      <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-info">
-                          <i class="fas fa-edit"></i> Edit
-                        </button>
-                        <button type="button" class="btn btn-warning">
-                        <i class="far fa-trash-alt"></i>Delete
-                        </button>
-                      </div>                      
-                      </td>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                      <td>Edinburgh</td>
                     </tr>
                   </tbody>
                 </table>
@@ -84,6 +72,7 @@
 
       </div>
       <!-- /.content-wrapper -->
+
     </div>
     <!-- /#wrapper -->
 
