@@ -9,7 +9,7 @@
     <?php include 'include/navbar.php' ?>
     <div id="wrapper">
       <!-- Sidebar -->
-      <?php include 'include/sidebar.php'?>
+      <?php include 'include/sidebar_dosen.php'?>
 
       <div id="content-wrapper">
 
