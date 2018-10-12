@@ -1,3 +1,5 @@
+<?php include 'include/head.php';
+		?>
 <?php
 	// INI ISI LANDING PAGE
 
@@ -42,28 +44,36 @@
 			}
 		} else {
 ?>
-	<form method='POST' action=''>
-		<div class='form-horizontal'>
-			<div class='fnama form-group'>
-				<label for="fnama" class='col-sm-2 control-label'>Nama</label>
-				<div class='col-sm-10'>
-					<input type="text" name="username" class='form-control' id="fnama" required="isi" />
-				</div>
-			</div>
-			<div class='fnim form-group'>
-				<label for="fnama" class='col-sm-2 control-label'>Password</label>
-				<div class='col-sm-10'>
-					<input type="password" name="password" class='form-control' id="nim" required="isi" />
-				</div>
-			</div>
-			<div class='center-block'>
-				<input type='submit' id='kirim' class="btn btn-primary" />
+<div class="container">
+	<div class="card card-login mx-auto mt-5">
+		<div class="card-header">Sign In</div>
+		<div class="card-body">
+			<form method='POST' action=''>
+				<!-- <div class='form-horizontal'> -->
+					<div class="form-group">
+						<div class="form-label-group">
+							<input type="text" name="username" class='form-control' id="fnama" required="isi" />
+							<label for="fname">Email address</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-label-group">
+							<input type="password" name="password" class='form-control' id="nim" required="isi" />
+							<label for="fnim">Password</label>
+						</div>
+					</div>
+					<div class='center-block'>
+						<input type='submit' id='kirim' class="btn btn-primary" />
 
-				<a class="btn btn-success" href="register.php">Register</a>
-			</div>
+						<a class="btn btn-success" href="register.php">Register</a>
+					</div>
+				<!-- </d	iv> -->
+			</form>
 		</div>
-	</form>
+	</div>
+</div>	
 <?php
 		}
 	}
 ?>
+ <?php include 'include/footer.php'?>

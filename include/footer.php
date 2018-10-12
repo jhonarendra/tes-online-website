@@ -24,4 +24,3 @@
     <script src="assets/vendor/datatables/dataTables.bootstrap4.js"></script>
     <script src="assets/js/sb-admin.min.js"></script>
     <script src="assets/js/demo/datatables-demo.js"></script>
-    <script src="assets/js/dosen.js"></script>
