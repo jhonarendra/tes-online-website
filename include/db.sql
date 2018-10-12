@@ -42,11 +42,11 @@ CREATE TABLE `tb_jawaban_mhs` (
   KEY `id_mhs` (`id_mhs`),
   CONSTRAINT `tb_jawaban_mhs_ibfk_1` FOREIGN KEY (`id_soal`) REFERENCES `tb_soal` (`id_soal`),
   CONSTRAINT `tb_jawaban_mhs_ibfk_2` FOREIGN KEY (`id_mhs`) REFERENCES `tb_mhs` (`id_mhs`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_jawaban_mhs` */
 
-insert  into `tb_jawaban_mhs`(`id_jawaban_mhs`,`id_soal`,`id_mhs`,`jawaban_mhs`) values (1,1,1,'wah saya kurang tahu'),(2,2,1,'hmmm apa ya');
+insert  into `tb_jawaban_mhs`(`id_jawaban_mhs`,`id_soal`,`id_mhs`,`jawaban_mhs`) values (1,1,1,'wah saya kurang tahu'),(2,2,1,'hmmm apa ya'),(3,1,2,'gak tau nok'),(4,2,2,'iii jahat :(');
 
 /*Table structure for table `tb_mhs` */
 
@@ -58,11 +58,31 @@ CREATE TABLE `tb_mhs` (
   `username_mhs` varchar(255) DEFAULT NULL,
   `password_mhs` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_mhs`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_mhs` */
 
-insert  into `tb_mhs`(`id_mhs`,`nama_mhs`,`username_mhs`,`password_mhs`) values (1,'deva','deva_xii_jayantha','deva');
+insert  into `tb_mhs`(`id_mhs`,`nama_mhs`,`username_mhs`,`password_mhs`) values (1,'jona','jona','jona'),(2,'deva','deva','deva');
+
+/*Table structure for table `tb_nilai_mhs` */
+
+DROP TABLE IF EXISTS `tb_nilai_mhs`;
+
+CREATE TABLE `tb_nilai_mhs` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id_ujian` int(10) DEFAULT NULL,
+  `id_mhs` int(10) DEFAULT NULL,
+  `nilai_mhs` float DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_mhs` (`id_mhs`),
+  KEY `id_ujian` (`id_ujian`),
+  CONSTRAINT `tb_nilai_mhs_ibfk_1` FOREIGN KEY (`id_mhs`) REFERENCES `tb_mhs` (`id_mhs`),
+  CONSTRAINT `tb_nilai_mhs_ibfk_2` FOREIGN KEY (`id_ujian`) REFERENCES `tb_ujian` (`id_ujian`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tb_nilai_mhs` */
+
+insert  into `tb_nilai_mhs`(`id`,`id_ujian`,`id_mhs`,`nilai_mhs`) values (1,1,1,10),(2,1,2,4.5);
 
 /*Table structure for table `tb_soal` */
 
@@ -76,7 +96,7 @@ CREATE TABLE `tb_soal` (
   PRIMARY KEY (`id_soal`),
   KEY `id_ujian` (`id_ujian`),
   CONSTRAINT `tb_soal_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `tb_ujian` (`id_ujian`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_soal` */
 

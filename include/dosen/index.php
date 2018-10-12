@@ -35,8 +35,14 @@
 								} else {
 									include 'include/dosen/content_soal.php';
 								}								
-							} else {
-
+							} else if($_GET['page']=='nilai_mhs') {
+								if(isset($_GET['aksi'])){
+									if($_GET['aksi']=='lihat') {
+										include 'include/dosen/content_lihat_nilai_mhs.php';
+									}
+								} else {
+									include 'include/dosen/content_nilai_mhs.php';
+								}
 							}
 						} else {
 							include 'include/dosen/content_dashboard.php';

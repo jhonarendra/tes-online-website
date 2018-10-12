@@ -17,7 +17,9 @@
 		} else {
 			echo "Anda tidak memiliki akses ke halaman ini!";
 		}
-	} else {
+	} else if(empty($slug)||$slug=='home') {
 		include 'login.php';
+	} else {
+		echo "404 Not Found";
 	}
 ?>

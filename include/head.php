@@ -3,6 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link href="assets/images/favicon.png" rel="icon" type="image/x-icon" />
 
     <title>LSI-Test Online</title>
 
