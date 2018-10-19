@@ -27,26 +27,58 @@
 					<!-- DataTables Example -->
 					<?php
 						if(isset($_GET['page'])){
-							if($_GET['page']=='soal'){
-								if(isset($_GET['aksi'])){
-									if($_GET['aksi']=='tambah') {
-										include 'include/dosen/content_tambah_soal.php';
+							if($_GET['page']=='ujian'){
+								if (isset($_GET['id_ujian'])) {
+									if (isset($_GET['aksi'])) {
+										if($_GET['aksi']=='tambah_soal'){
+											include 'include/dosen/content_tambah_soal.php';
+										}
+									} else {
+										include 'include/dosen/content_lihat_ujian.php';
+									}
+								} else if(isset($_GET['aksi'])){
+									if($_GET['aksi']=='buat_ujian'){
+										include 'include/dosen/content_buat_ujian.php';
 									}
 								} else {
-									include 'include/dosen/content_soal.php';
-								}								
-							} else if($_GET['page']=='nilai_mhs') {
-								if(isset($_GET['aksi'])){
-									if($_GET['aksi']=='lihat') {
-										include 'include/dosen/content_lihat_nilai_mhs.php';
-									}
-								} else {
-									include 'include/dosen/content_nilai_mhs.php';
+									include 'include/dosen/content_ujian.php';	
 								}
+
+							} else if($_GET['page']=='nilai_mhs'){
+								include 'include/dosen/content_nilai_mhs.php';
 							}
 						} else {
 							include 'include/dosen/content_dashboard.php';
 						}
+						// if(isset($_GET['page'])){
+						// 	if($_GET['page']=='soal'){
+						// 		if(isset($_GET['aksi'])){
+						// 			if($_GET['aksi']=='tambah') {
+						// 				include 'include/dosen/content_tambah_soal.php';
+						// 			}
+						// 		} else {
+						// 			include 'include/dosen/content_soal.php';
+						// 		}								
+						// 	} else if($_GET['page']=='nilai_mhs') {
+						// 		if(isset($_GET['aksi'])){
+						// 			if($_GET['aksi']=='lihat') {
+						// 				include 'include/dosen/content_lihat_nilai_mhs.php';
+						// 			}
+						// 		} else {
+						// 			include 'include/dosen/content_nilai_mhs.php';
+						// 		}
+						// 	} else if($_GET['page']=='ujian') {
+						// 		if(isset($_GET['aksi'])){
+						// 			// if($_GET['aksi']=='lihat') {
+						// 			// 	include 'include/dosen/content_lihat_nilai_mhs.php';
+						// 			// }
+						// 		} else {
+						// 			include 'include/dosen/content_ujian.php';
+						// 		}
+						// 	}
+						// } else {
+						// 	include 'include/dosen/content_dashboard.php';
+						// }
 					?>
 
 				</div>
@@ -72,9 +104,9 @@
 		</a>
 
 		<?php include 'include/footer.php'?>
-		<script type="text/javascript">
+		<!-- <script type="text/javascript">
 			alert("Halo <?php if(isset($_SESSION['nama_mhs'])){echo $_SESSION['nama_mhs'];} else {echo $_SESSION['nama_dosen'];}?>");
-		</script>
+		</script> -->
 
 	</body>
 

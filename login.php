@@ -26,6 +26,7 @@
 				echo "string";
 				foreach ($login_dosen as $user_dosen) {
 					$_SESSION['nama_dosen'] = $user_dosen['nama_dosen'];
+					$_SESSION['id_dosen'] = $user_dosen['id_dosen'];
 				}
 				header("Location: dosen");
 				exit();

@@ -46,7 +46,7 @@ CREATE TABLE `tb_jawaban_mhs` (
 
 /*Data for the table `tb_jawaban_mhs` */
 
-insert  into `tb_jawaban_mhs`(`id_jawaban_mhs`,`id_soal`,`id_mhs`,`jawaban_mhs`) values (1,1,1,'wah saya kurang tahu'),(2,2,1,'hmmm apa ya'),(3,1,2,'gak tau nok'),(4,2,2,'iii jahat :(');
+insert  into `tb_jawaban_mhs`(`id_jawaban_mhs`,`id_soal`,`id_mhs`,`jawaban_mhs`) values (1,1,1,'suatu sistem komputer untuk mengarsipkan dan menganalisis data historis suatu organisasi seperti data penjualan, gaji, danlain dari operasi harian'),(2,2,1,'hmmm apa ya'),(3,1,2,'gak tau nok'),(4,2,2,'iii jahat :(');
 
 /*Table structure for table `tb_mhs` */
 
@@ -82,7 +82,7 @@ CREATE TABLE `tb_nilai_mhs` (
 
 /*Data for the table `tb_nilai_mhs` */
 
-insert  into `tb_nilai_mhs`(`id`,`id_ujian`,`id_mhs`,`nilai_mhs`) values (1,1,1,10),(2,1,2,4.5);
+insert  into `tb_nilai_mhs`(`id`,`id_ujian`,`id_mhs`,`nilai_mhs`) values (1,1,1,61),(2,1,2,11);
 
 /*Table structure for table `tb_soal` */
 
@@ -90,17 +90,18 @@ DROP TABLE IF EXISTS `tb_soal`;
 
 CREATE TABLE `tb_soal` (
   `id_soal` int(10) NOT NULL AUTO_INCREMENT,
+  `nomor_soal` int(2) DEFAULT NULL,
   `id_ujian` int(11) DEFAULT NULL,
   `soal` varchar(255) DEFAULT NULL,
   `kunci_jawaban` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_soal`),
   KEY `id_ujian` (`id_ujian`),
   CONSTRAINT `tb_soal_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `tb_ujian` (`id_ujian`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_soal` */
 
-insert  into `tb_soal`(`id_soal`,`id_ujian`,`soal`,`kunci_jawaban`) values (1,1,'Apa yang kamu ketahui tentang data warehouse?','suatu sistem komputer untuk mengarsipkan dan menganalisis data historis suatu organisasi seperti data penjualan, gaji, dan informasi lain dari operasi harian'),(2,1,'Apa yang kamu ketahui tentang saya?','apa maksud anda menanyakan hal itu?');
+insert  into `tb_soal`(`id_soal`,`nomor_soal`,`id_ujian`,`soal`,`kunci_jawaban`) values (1,2,1,'Apa yang kamu ketahui tentang data warehouse?','suatu sistem komputer untuk mengarsipkan dan menganalisis data historis suatu organisasi seperti data penjualan, gaji, dan informasi lain dari operasi harian'),(2,1,1,'Apa yang kamu ketahui tentang saya?','apa maksud anda menanyakan hal itu?'),(3,3,1,'oskoskdo','osdkosdko'),(4,4,1,'2923893282','2939238923'),(5,5,1,'okoskdos','osdkoskd'),(6,6,1,'soosdkosdkosd','sdkosdkosd'),(7,7,1,'92389839238','2938923823'),(8,8,1,'oskdoskd','oksodksd'),(9,9,1,'292389238','29389238923');
 
 /*Table structure for table `tb_ujian` */
 
@@ -115,11 +116,11 @@ CREATE TABLE `tb_ujian` (
   PRIMARY KEY (`id_ujian`),
   KEY `id_dosen` (`id_dosen`),
   CONSTRAINT `tb_ujian_ibfk_1` FOREIGN KEY (`id_dosen`) REFERENCES `tb_dosen` (`id_dosen`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_ujian` */
 
-insert  into `tb_ujian`(`id_ujian`,`nama_ujian`,`tgl_buat_ujian`,`tgl_selesai_ujian`,`id_dosen`) values (1,'UAS STKI','2018-10-04 21:40:22','2018-10-05 21:40:26',1);
+insert  into `tb_ujian`(`id_ujian`,`nama_ujian`,`tgl_buat_ujian`,`tgl_selesai_ujian`,`id_dosen`) values (1,'UAS STKI','2018-10-04 21:40:22','2018-10-05 21:40:26',1),(2,'','2018-10-19 05:02:17','2018-10-15 21:40:26',1),(3,'oskdoskd','2018-10-19 20:08:34','2018-10-19 00:00:00',1),(4,'jojoj','2018-10-19 20:08:58','2018-10-20 00:00:00',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

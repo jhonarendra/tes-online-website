@@ -35,7 +35,8 @@
             <td><?php echo $nilai['jawaban_mhs']?></td>
             <td>
               <?php
-                echo similar_text($nilai['kunci_jawaban'], $nilai['jawaban_mhs'])."%";
+                similar_text($nilai['kunci_jawaban'], $nilai['jawaban_mhs'], $percentage);
+                echo $percentage;
               ?>
             </td>
             <td>
