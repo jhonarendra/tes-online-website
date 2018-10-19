@@ -27,7 +27,13 @@
 
 					<!-- DataTables Example -->
 					<?php
-						include 'include/mahasiswa/content_dashboard.php';
+						if(isset($_GET['page'])){
+							if($_GET['page']=='nilai'){
+								include 'include/mahasiswa/content_lihat_nilai.php';							
+							}
+						} else {
+							include 'include/mahasiswa/content_dashboard.php';
+						}
 					?>
 
 				</div>
