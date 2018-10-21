@@ -31,9 +31,18 @@
 							if($_GET['page']=='nilai'){
 								include 'include/mahasiswa/content_lihat_nilai.php';							
 							}
+							
 						} else {
-							include 'include/mahasiswa/content_dashboard.php';
+							if(isset($_GET['kerjakan'])){
+								$nama_ujian = $_GET['kerjakan'];
+								// if($_GET['kerjakan']==){
+									include 'include/mahasiswa/content_kerjakan_soal.php';
+								// }
+							}else{
+								include 'include/mahasiswa/content_dashboard.php';
+							}
 						}
+
 					?>
 
 				</div>

@@ -36,7 +36,7 @@
 				<td><?php echo $nilai['nama_dosen']?></td>
 				<td>
 					<div class="btn-group" role="group" aria-label="Basic example">
-						<a class="btn btn-primary" href="javascript:void(o)">
+						<a class="btn btn-primary" href="?kerjakan=<?php echo $nilai['nama_ujian'] ?>">
 							<i class="fas fa-pencil-alt"></i>
 						</a>						
 					</div>				
