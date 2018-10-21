@@ -7,7 +7,7 @@
     </li> 
     <li class="nav-item active">
         <a class="nav-link" href="?page=nilai">
-        <i class="fas fa-fw fa-home"></i>
+        <i class="fas fa-chalkboard-teacher"></i>
         <span>Nilai</span>
         </a>
     </li>                      

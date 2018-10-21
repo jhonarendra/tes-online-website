@@ -19,6 +19,7 @@
 			if($numrow_mhs == 1){
 				foreach ($login_mhs as $user_mhs) {
 					$_SESSION['nama_mhs'] = $user_mhs['nama_mhs'];
+					$_SESSION['id_mhs'] = $user_mhs['id_mhs'];
 				}
 				header("Location: mahasiswa");
 				exit();
