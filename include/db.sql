@@ -37,16 +37,17 @@ CREATE TABLE `tb_jawaban_mhs` (
   `id_soal` int(11) DEFAULT NULL,
   `id_mhs` int(11) DEFAULT NULL,
   `jawaban_mhs` varchar(255) DEFAULT NULL,
+  `nilai_similarity` float DEFAULT NULL,
   PRIMARY KEY (`id_jawaban_mhs`),
   KEY `id_soal` (`id_soal`),
   KEY `id_mhs` (`id_mhs`),
   CONSTRAINT `tb_jawaban_mhs_ibfk_1` FOREIGN KEY (`id_soal`) REFERENCES `tb_soal` (`id_soal`),
   CONSTRAINT `tb_jawaban_mhs_ibfk_2` FOREIGN KEY (`id_mhs`) REFERENCES `tb_mhs` (`id_mhs`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_jawaban_mhs` */
 
-insert  into `tb_jawaban_mhs`(`id_jawaban_mhs`,`id_soal`,`id_mhs`,`jawaban_mhs`) values (1,1,1,'suatu sistem komputer untuk mengarsipkan dan menganalisis data historis suatu organisasi seperti data penjualan, gaji, danlain dari operasi harian'),(2,2,1,'hmmm apa ya'),(3,1,2,'gak tau nok'),(4,2,2,'iii jahat :(');
+insert  into `tb_jawaban_mhs`(`id_jawaban_mhs`,`id_soal`,`id_mhs`,`jawaban_mhs`,`nilai_similarity`) values (51,1,1,'suatu sistem komputer untuk mengarsipkan dan menganalisis data historis suatu organisasi seperti data penjualan, gaji, dan informasi lain dari operasi harian',100),(52,2,1,'apa urusan anda menanyakan hal itu?',85.7143),(53,3,1,'skdskdskdo',52.6316),(54,4,1,'sodkoskosdko',0),(55,5,1,'sodkodskdo',77.7778),(56,6,1,'okdsokds',33.3333),(57,7,1,'osdkosdk',0),(58,8,1,'osdkosdk',37.5),(59,9,1,'osdkod',0);
 
 /*Table structure for table `tb_mhs` */
 
@@ -78,11 +79,11 @@ CREATE TABLE `tb_nilai_mhs` (
   KEY `id_ujian` (`id_ujian`),
   CONSTRAINT `tb_nilai_mhs_ibfk_1` FOREIGN KEY (`id_mhs`) REFERENCES `tb_mhs` (`id_mhs`),
   CONSTRAINT `tb_nilai_mhs_ibfk_2` FOREIGN KEY (`id_ujian`) REFERENCES `tb_ujian` (`id_ujian`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_nilai_mhs` */
 
-insert  into `tb_nilai_mhs`(`id`,`id_ujian`,`id_mhs`,`nilai_mhs`) values (1,1,1,61),(2,1,2,11);
+insert  into `tb_nilai_mhs`(`id`,`id_ujian`,`id_mhs`,`nilai_mhs`) values (6,1,1,42.9952);
 
 /*Table structure for table `tb_soal` */
 
