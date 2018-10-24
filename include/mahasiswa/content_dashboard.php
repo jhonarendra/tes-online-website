@@ -22,6 +22,7 @@
 				<th scope="col">Tanggal Akhir</th>
 				<th scope="col">Dosen</th>
 				<th scope="col">Aksi</th>
+				<th scope="col">Status</th>
             </tr>
         </thead>
 		<?php
@@ -29,18 +30,22 @@
           ?>		
         <tbody>
             <tr>
-				<td><?php echo $i?></td>
-				<td><?php echo $nilai['nama_ujian']?></td>
-				<td><?php echo $nilai['tgl_buat_ujian']?></td>
-				<td><?php echo $nilai['tgl_selesai_ujian']?></td>
-				<td><?php echo $nilai['nama_dosen']?></td>
-				<td>
-					<div class="btn-group" role="group" aria-label="Basic example">
-						<a class="btn btn-primary" href="?kerjakan=<?php echo $nilai['nama_ujian'] ?>">
-							<i class="fas fa-pencil-alt"></i>
-						</a>						
-					</div>				
-				</td>
+							<td><?php echo $i?></td>
+							<td><?php echo $nilai['nama_ujian']?></td>
+							<td><?php echo $nilai['tgl_buat_ujian']?></td>
+							<td><?php echo $nilai['tgl_selesai_ujian']?></td>
+							<td><?php echo $nilai['nama_dosen']?></td>
+							<td>
+								<div class="btn-group" role="group" aria-label="Basic example">
+									<a class="btn btn-primary" href="?kerjakan=<?php echo $nilai['nama_ujian'] ?>">
+										<i class="fas fa-pencil-alt"></i>
+									</a>						
+								</div>				
+							</td>
+							<td>
+								<button class="btn btn-success"><i class="fas fa-check"></i> Sudah Dikerjakan</button>		
+								<button class="btn btn-danger"><i class="fas fa-times"></i> Belum Dikerjakan</button>								
+							</td>
             </tr>
 			<?php
 				$i++;

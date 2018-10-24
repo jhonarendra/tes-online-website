@@ -15,6 +15,7 @@
 				$insert_soal = mysqli_query($conn, "INSERT INTO tb_jawaban_mhs VALUES(NULL, $i, $id_mhs, '$jawaban', $nilai_similarity)");
 				$jumlah_soal++;
 			}
+			header('Location: mahasiswa');
 		}
 		$tot_nilai = $sum_nilai/$jumlah_soal;
 		$insert_nilai = mysqli_query($conn, "INSERT INTO tb_nilai_mhs VALUES (NULL, $id_ujian, $id_mhs, $tot_nilai)");
@@ -22,7 +23,7 @@
 ?>
 <div class="card mb-3">
 	<div class="card-header">
-		<i class="fas fa-table"></i> Dashboard
+		<i class="fas fa-list-ul"></i> Daftar Soal
 	</div>
 	<div class="card-body">
 		<form id="form" action="" method="POST">
@@ -31,14 +32,16 @@
 			foreach ($semua_soal as $soal) {
 		?>
 			<p><?php echo $soal['nomor_soal'].". ".$soal['soal']?></p>
-			<input type="text" name="jawaban_mhs<?php echo $soal['id_soal']?>">
+			<textarea class="form-control" type="text" name="jawaban_mhs<?php echo $soal['id_soal']?>" rows="5"></textarea>
+			<!-- /<input type="text" name="jawaban_mhs<?php echo $soal['id_soal']?>"> -->
 			<input type="hidden" name="kunci_jawaban<?php echo $soal['id_soal']?>" value="<?php echo $soal['kunci_jawaban']?>">
 			<br /><br />
 		<?php
 			}
 		?>
 			<input type="hidden" name="id_ujian" value="<?php echo $soal['id_ujian'] ?>">
-			<input type="submit" name="submit" value="kirim">
+			<button type="submit" name="submit" value="kirim" class="btn btn-outline-primary"><i class="fab fa-telegram-plane"></i> Submit</button>
+			<!-- <input type="submit" name="submit" value="kirim"> -->
 		</form>
 	</div>
 	<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
