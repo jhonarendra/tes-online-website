@@ -45,7 +45,17 @@
 								}
 
 							} else if($_GET['page']=='nilai_mhs'){
-								include 'include/dosen/content_nilai_mhs.php';
+								if(isset($_GET['aksi'])){
+									if($_GET['aksi']=='lihat'){
+										if(isset($_GET['id'])){
+											include 'include/dosen/content_lihat_nilai_mhs.php';
+										} else {
+											include 'include/dosen/content_nilai_mhs.php';
+										}
+									}
+								} else {
+									include 'include/dosen/content_daftar_ujian.php';
+								}
 							}
 						} else {
 							include 'include/dosen/content_dashboard.php';

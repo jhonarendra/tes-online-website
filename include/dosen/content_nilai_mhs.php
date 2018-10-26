@@ -1,3 +1,6 @@
+<?php
+	$id_ujian = $_GET['id_ujian'];
+?>
 <div class="card mb-3">
 	<div class="card-header">
 		<i class="fas fa-table"></i> Nilai Mahasiswa
@@ -16,8 +19,7 @@
 				</thead>
 				<tbody>
 					<?php
-						$id_ujian = 1;
-						$semua_nilai_mhs = mysqli_query($conn, "SELECT * FROM tb_nilai_mhs INNER JOIN tb_mhs ON tb_mhs.`id_mhs`=tb_nilai_mhs.`id_mhs` WHERE id_ujian=1");
+						$semua_nilai_mhs = mysqli_query($conn, "SELECT * FROM tb_nilai_mhs INNER JOIN tb_mhs ON tb_mhs.`id_mhs`=tb_nilai_mhs.`id_mhs` WHERE id_ujian=$id_ujian");
 						$i=1;
 						foreach ($semua_nilai_mhs as $nilai_mhs) {
 					?>
