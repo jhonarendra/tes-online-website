@@ -1,6 +1,13 @@
 <?php
+	include 'include/text-processing/Stemming.php';
+	include 'include/text-processing/LSI.php';
+
 	$id_mhs = $_SESSION['id_mhs'];
 	$nama_ujian = $_GET['kerjakan'];
+
+	$stems = new Stemming();
+	$lsi = new LSI();
+
 
 	if (isset($_POST['submit'])) {
 		$sum_nilai = 0;
@@ -8,16 +15,29 @@
 		$jumlah_soal = 0;
 		for ($i=0; $i<100 ; $i++) { 
 			if(isset($_POST['jawaban_mhs'.$i])){
-				$jawaban = $_POST['jawaban_mhs'.$i];
+				$jawaban_mhs = $_POST['jawaban_mhs'.$i];
 				$kunci_jawaban = $_POST['kunci_jawaban'.$i];
-				similar_text($jawaban, $kunci_jawaban, $nilai_similarity);
-				$sum_nilai = $nilai_similarity+$sum_nilai;
-				$insert_soal = mysqli_query($conn, "INSERT INTO tb_jawaban_mhs VALUES(NULL, $i, $id_mhs, '$jawaban', $nilai_similarity)");
+
+				// similar_text($jawaban, $kunci_jawaban, $nilai_similarity);
+
+				$stemming_kunci_jawaban = $stems->stem($kunci_jawaban);
+				$stemming_jawaban_mhs = $stems->stem($jawaban_mhs);
+
+				$similarity = $lsi->runlsi($stemming_kunci_jawaban, $stemming_jawaban_mhs);
+
+
+				$sum_nilai = $similarity+$sum_nilai;
+
+				$insert_soal = mysqli_query($conn, "INSERT INTO tb_jawaban_mhs VALUES(NULL, $i, $id_mhs, '$jawaban_mhs', $similarity)");
+
+
+				// echo $similarity."<br />";
 				$jumlah_soal++;
 			}
 			header('Location: mahasiswa');
 		}
 		$tot_nilai = $sum_nilai/$jumlah_soal;
+		// echo $tot_nilai;
 		$insert_nilai = mysqli_query($conn, "INSERT INTO tb_nilai_mhs VALUES (NULL, $id_ujian, $id_mhs, $tot_nilai)");
 	}
 ?>

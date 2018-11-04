@@ -33,12 +33,7 @@
             <td><?php echo $nilai['soal']?></td>
             <td><?php echo $nilai['kunci_jawaban']?></td>
             <td><?php echo $nilai['jawaban_mhs']?></td>
-            <td>
-              <?php
-                similar_text($nilai['kunci_jawaban'], $nilai['jawaban_mhs'], $percentage);
-                echo $percentage;
-              ?>
-            </td>
+            <td><?php echo $nilai['nilai_similarity']; ?></td>
             <td>
               <a class="btn btn-primary" href="javascript:void(o)">
                 <i class="fas fa-pencil-alt"></i>
