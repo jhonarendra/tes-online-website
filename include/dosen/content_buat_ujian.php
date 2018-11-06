@@ -18,10 +18,10 @@
 	<div class="card-body">
 		<form id="form" action="" method="POST">
 			Nama ujian:
-			<input type="text" name="nama_ujian"><br />
+			<input type="text" name="nama_ujian" class="form-control"><br />
 			Selesai ujian:
-			<input type="date" name="ujian_selesai"><br />
-			<input type="submit" name="submit" value="Buat Ujian">
+			<input type="date" name="ujian_selesai" class="form-control"><br />
+			<input type="submit" name="submit" value="Buat Ujian" class="btn btn-primary">
 		</form>
 	</div>
 </div>

@@ -99,7 +99,7 @@
 			      <div class="modal-body"><?php echo $nilai_ujian_mhs ?></div>
 			      <div class="modal-footer">
 			        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-			        <a class="btn btn-primary" href="logout.php">Logout</a>
+			        <!-- <a class="btn btn-primary" href="logout.php">Logout</a> -->
 			      </div>
 			    </div>
 			  </div>
@@ -110,5 +110,5 @@
         </tbody>
     </table>		
 	</div>
-	<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+	<div class="card-footer small text-muted">Latent Semantic Index | Tes Online 2018</div>
 </div>

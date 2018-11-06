@@ -44,5 +44,5 @@
         </tbody>
     </table>
 	</div>
-	<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+	<div class="card-footer small text-muted">Latent Semantic Index | Tes Online 2018</div>
 </div>

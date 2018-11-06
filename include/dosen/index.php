@@ -98,7 +98,7 @@
 				<footer class="sticky-footer">
 					<div class="container my-auto">
 						<div class="copyright text-center my-auto">
-							<span>Copyright © Your Website 2018</span>
+							<span>Latent Semantic Index | Tes Online 2018</span>
 						</div>
 					</div>
 				</footer>

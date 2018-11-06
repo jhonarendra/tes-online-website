@@ -131,7 +131,7 @@
 			}else if(substr($kata,0,4)=="meny"){
 				$kata = "s".substr($kata,4);
 			}else if(substr($kata,0,3)=="men"){
-				$kata = "t".substr($kata,3);
+				$kata = substr($kata,3);
 			}else if(substr($kata,0,3)=="mem"){
 				if(substr($kata,3,1)=="a"){
 					$kata = "m".substr($kata,3);
