@@ -19,7 +19,6 @@
 					<tr>
 						<th>No</th>
 						<th>Soal</th>
-						<th>Kunci Jawaban</th>
 						<th>Aksi</th>
 					</tr>
 				</thead>
@@ -31,7 +30,6 @@
 					<tr>
 						<td><?php echo $soal['nomor_soal']?></td>
 						<td><?php echo $soal['soal']?></td>
-						<td><?php echo $soal['kunci_jawaban']?></td>
 						<td>
 							<a class="btn btn-danger" href="javascript:void(o)">
 								<i class="fas fa-trash"></i>

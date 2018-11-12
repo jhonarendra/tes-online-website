@@ -10,35 +10,27 @@
 
 
 	if (isset($_POST['submit'])) {
-		$sum_nilai = 0;
 		$id_ujian = $_POST['id_ujian'];
 		$jumlah_soal = 0;
 		for ($i=0; $i<100 ; $i++) { 
 			if(isset($_POST['jawaban_mhs'.$i])){
 				$jawaban_mhs = $_POST['jawaban_mhs'.$i];
-				$kunci_jawaban = $_POST['kunci_jawaban'.$i];
 
-				// similar_text($jawaban, $kunci_jawaban, $nilai_similarity);
-
-				$stemming_kunci_jawaban = $stems->stem($kunci_jawaban);
 				$stemming_jawaban_mhs = $stems->stem($jawaban_mhs);
 
-				$similarity = $lsi->runlsi($stemming_kunci_jawaban, $stemming_jawaban_mhs);
+				$string_stemming_jawaban_mhs = null;
 
+				foreach ($stemming_jawaban_mhs as $key) {
+					$string_stemming_jawaban_mhs = $string_stemming_jawaban_mhs." ".$key;
+				}
 
-				$sum_nilai = $similarity+$sum_nilai;
+				$insert_soal = mysqli_query($conn, "INSERT INTO tb_jawaban_mhs VALUES(NULL, $i, $id_mhs, '$jawaban_mhs', '$string_stemming_jawaban_mhs')");
 
-				$insert_soal = mysqli_query($conn, "INSERT INTO tb_jawaban_mhs VALUES(NULL, $i, $id_mhs, '$jawaban_mhs', $similarity)");
-
-
-				// echo $similarity."<br />";
 				$jumlah_soal++;
 			}
 			header('Location: mahasiswa');
 		}
-		$tot_nilai = $sum_nilai/$jumlah_soal;
-		// echo $tot_nilai;
-		$insert_nilai = mysqli_query($conn, "INSERT INTO tb_nilai_mhs VALUES (NULL, $id_ujian, $id_mhs, $tot_nilai)");
+		$insert_nilai = mysqli_query($conn, "INSERT INTO tb_nilai_mhs VALUES(NULL, $id_ujian, $id_mhs, 0);");
 	}
 ?>
 <div class="card mb-3">
@@ -53,8 +45,6 @@
 		?>
 			<p><?php echo $soal['nomor_soal'].". ".$soal['soal']?></p>
 			<textarea class="form-control" type="text" name="jawaban_mhs<?php echo $soal['id_soal']?>" rows="5"></textarea>
-			<!-- /<input type="text" name="jawaban_mhs<?php echo $soal['id_soal']?>"> -->
-			<input type="hidden" name="kunci_jawaban<?php echo $soal['id_soal']?>" value="<?php echo $soal['kunci_jawaban']?>">
 			<br /><br />
 		<?php
 			}

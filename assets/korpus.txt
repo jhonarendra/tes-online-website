@@ -1,0 +1,8 @@
+Metode dalam information retrieval yang berbasis vektor ada GVSM, LSI dan Neural Network. Saya akan menjelaskan metode LSI. LSI adalah metode IR berbasis vektor yang dapat mengukur similarity atau kemiripan dari suatu dokumen teks. Pertama, dibuatkan matriks A yang merupakan semua term dari semua data. Setelah itu dikalikan dengan matriks vektor A Transpos. Didapat sebuah matriks untuk dihitung eigenvalue dan eigenvector. Setelah didapat eigenvalue dan eigenvector, dijadikan matriks dan dinormalisasi menggunakan rumus. Terakhir, hasil perkalian matriks eigen dengan matriks A, dikali dengan matriks vector query sehingga didapat nilai similarity.
+
+Dalam evaluation IR, dikenal Precision dan Recall. Precision adalah persentase dokumen yang diretrieve dan relevan. Sedangkan Recall adalah persentase dokumen yang relevan dan diretrieve.
+===
+Metode LSI
+LSI adalah metode information retrieval berbasis vektor. LSI atau latent semantic indexing menggunakan persamaan eigen untuk mencari kemiripan antar dokumen. Nanti vector akan dikalikan dengan vector query untuk dibandingkan dengan dokumen lain.
+
+Precision adalah dokumen yang diterima dan itu relevan, sedangkan recall berarti dokumen yang relevan dan itu diterima.

@@ -181,14 +181,12 @@
 		echo "<br /><br />Menghitung Eigenvector:<br />Vektor 1<br />";
 		echo "| ";
 		$eigenvec1 = (1/($temp1-$lamda1))*$temp2;
-		// $eigenvec1 = sqrt(pow($eigenvec1, 2));
 		echo $eigenvec1;
 		echo "<br />| 1 <br /><br />Vektor 2<br />";
 
 		echo "| ";
 		$eigenvec2 = (1/($temp1-$lamda2))*$temp2;
-		// $eigenvec2 = sqrt(pow($eigenvec2, 2));
-		echo $eigenvec2;
+		echo (1/($temp1-$lamda2))*$temp2;
 		echo "<br />| 1 <br /><br /><br /><br />Menghitung Matriks S (eigenvalue diakarin)<br />";
 
 		$s[0] = sqrt(sqrt(pow($lamda1, 2)));
@@ -489,7 +487,7 @@
 			}else if(substr($kata,0,4)=="meny"){
 				$kata = "s".substr($kata,4);
 			}else if(substr($kata,0,3)=="men"){
-				$kata = substr($kata,3);
+				$kata = "t".substr($kata,3);
 			}else if(substr($kata,0,3)=="mem"){
 				if(substr($kata,3,1)=="a"){
 					$kata = "m".substr($kata,3);

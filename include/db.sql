@@ -26,7 +26,7 @@ CREATE TABLE `tb_dosen` (
 
 /*Data for the table `tb_dosen` */
 
-insert  into `tb_dosen`(`id_dosen`,`nama_dosen`,`username_dosen`,`password_dosen`) values (1,'pak suwija','suwija','suwija');
+insert  into `tb_dosen`(`id_dosen`,`nama_dosen`,`username_dosen`,`password_dosen`) values (1,'Prof. Lie Jasa, S.T., M.T','liejasa','liejasa');
 
 /*Table structure for table `tb_jawaban_mhs` */
 
@@ -34,20 +34,20 @@ DROP TABLE IF EXISTS `tb_jawaban_mhs`;
 
 CREATE TABLE `tb_jawaban_mhs` (
   `id_jawaban_mhs` int(10) NOT NULL AUTO_INCREMENT,
-  `id_soal` int(11) DEFAULT NULL,
-  `id_mhs` int(11) DEFAULT NULL,
-  `jawaban_mhs` varchar(255) DEFAULT NULL,
-  `nilai_similarity` float DEFAULT NULL,
+  `id_soal` int(10) DEFAULT NULL,
+  `id_mhs` int(10) DEFAULT NULL,
+  `jawaban_mhs` text,
+  `stem_jawaban_mhs` text,
   PRIMARY KEY (`id_jawaban_mhs`),
   KEY `id_soal` (`id_soal`),
   KEY `id_mhs` (`id_mhs`),
   CONSTRAINT `tb_jawaban_mhs_ibfk_1` FOREIGN KEY (`id_soal`) REFERENCES `tb_soal` (`id_soal`),
   CONSTRAINT `tb_jawaban_mhs_ibfk_2` FOREIGN KEY (`id_mhs`) REFERENCES `tb_mhs` (`id_mhs`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_jawaban_mhs` */
 
-insert  into `tb_jawaban_mhs`(`id_jawaban_mhs`,`id_soal`,`id_mhs`,`jawaban_mhs`,`nilai_similarity`) values (51,1,1,'suatu sistem komputer untuk mengarsipkan dan menganalisis data historis suatu organisasi seperti data penjualan, gaji, dan informasi lain dari operasi harian',100),(52,2,1,'apa urusan anda menanyakan hal itu?',85.7143),(53,3,1,'skdskdskdo',52.6316),(54,4,1,'sodkoskosdko',0),(55,5,1,'sodkodskdo',77.7778),(56,6,1,'okdsokds',33.3333),(57,7,1,'osdkosdk',0),(58,8,1,'osdkosdk',37.5),(59,9,1,'osdkod',0);
+insert  into `tb_jawaban_mhs`(`id_jawaban_mhs`,`id_soal`,`id_mhs`,`jawaban_mhs`,`stem_jawaban_mhs`) values (12,13,1,'Metode dalam information retrieval yang berbasis vektor ada GVSM, LSI dan Neural Network. Saya akan menjelaskan metode LSI. LSI adalah metode IR berbasis vektor yang dapat mengukur similarity atau kemiripan dari suatu dokumen teks. Pertama, dibuatkan matriks A yang merupakan semua term dari semua data. Setelah itu dikalikan dengan matriks vektor A Transpos. Didapat sebuah matriks untuk dihitung eigenvalue dan eigenvector. Setelah didapat eigenvalue dan eigenvector, dijadikan matriks dan dinormalisasi menggunakan rumus. Terakhir, hasil perkalian matriks eigen dengan matriks A, dikali dengan matriks vector query sehingga didapat nilai similarity.',' metode information retrieval basis vektor gvsm ls neural network metode ls ls metode ir basis vektor ukur similarity mirip dokumen teks buat matriks term data kali matriks vektor transpos dapat matriks hitung eigenvalue eigenvector dapat eigenvalue eigenvector jadi matriks normalisasi rumus kalian matriks eigen matriks kali matriks vector query dapat nilai similarity'),(13,14,1,'Dalam evaluation IR, dikenal Precision dan Recall. Precision adalah persentase dokumen yang diretrieve dan relevan. Sedangkan Recall adalah persentase dokumen yang relevan dan diretrieve.',' evaluation ir kenal precision recall precision persentase dokumen retrieve relevan recall persentase dokumen relevan retrieve'),(14,13,2,'LSI adalah metode information retrieval berbasis vektor. LSI atau latent semantic indexing menggunakan persamaan eigen untuk mencari kemiripan antar dokumen. Nanti vector akan dikalikan dengan vector query untuk dibandingkan dengan dokumen lain.',' ls metode information retrieval basis vektor ls latent mantic indexing sama eigen mirip antar dokumen vector kali vector query banding dokumen'),(15,14,2,'Precision adalah dokumen yang diterima dan itu relevan, sedangkan recall berarti dokumen yang relevan dan itu diterima.',' precision dokumen terima relevan recall dokumen relevan terima'),(16,13,3,'Metode Neural Network\r\nNeural network atau jaringan syaraf tiruan merupakan metode yang mengambil konsep dari jaringan syaraf pada manusia',' metode neural network neural network jaring syaraf tiru metode konsep jaring syaraf manusia'),(17,14,3,'Precision itu dokumen yang diterima dan relevan sedangkan recall itu dokumen yang relevan dan diterima',' precision dokumen terima relevan recall dokumen relevan terima'),(18,13,4,'Metode dalam information retrieval yang berbasis vektor ada GVSM, LSI dan Neural Network. Saya akan menjelaskan metode LSI. LSI adalah metode IR berbasis vektor yang dapat mengukur similarity atau kemiripan dari suatu dokumen teks. Pertama, dibuatkan matriks A yang merupakan semua term dari semua data. Setelah itu dikalikan dengan matriks vektor A Transpos. Didapat sebuah matriks untuk dihitung eigenvalue dan eigenvector. Setelah didapat eigenvalue dan eigenvector, dijadikan matriks dan dinormalisasi menggunakan rumus. Terakhir, hasil perkalian matriks eigen dengan matriks A, dikali dengan matriks vector query sehingga didapat nilai similarity.',' metode information retrieval basis vektor gvsm ls neural network metode ls ls metode ir basis vektor ukur similarity mirip dokumen teks buat matriks term data kali matriks vektor transpos dapat matriks hitung eigenvalue eigenvector dapat eigenvalue eigenvector jadi matriks normalisasi rumus kalian matriks eigen matriks kali matriks vector query dapat nilai similarity'),(19,14,4,'Dalam evaluation IR, dikenal Precision dan Recall. Precision adalah persentase dokumen yang diretrieve dan relevan. Sedangkan Recall adalah persentase dokumen yang relevan dan diretrieve.',' evaluation ir kenal precision recall precision persentase dokumen retrieve relevan recall persentase dokumen relevan retrieve');
 
 /*Table structure for table `tb_mhs` */
 
@@ -59,11 +59,11 @@ CREATE TABLE `tb_mhs` (
   `username_mhs` varchar(255) DEFAULT NULL,
   `password_mhs` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_mhs`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_mhs` */
 
-insert  into `tb_mhs`(`id_mhs`,`nama_mhs`,`username_mhs`,`password_mhs`) values (1,'jona','jona','jona'),(2,'deva','deva','deva');
+insert  into `tb_mhs`(`id_mhs`,`nama_mhs`,`username_mhs`,`password_mhs`) values (1,'Putu Jhonarendra','jhonarendra','jonajona'),(2,'Deva Jayantha','devajayantha','devadeva'),(3,'Veggy Priyanka','veggy','veggy'),(4,'Edy Maulana Vikri','edymv','edymv'),(5,'Dewa Gede','dewagede','dewagede');
 
 /*Table structure for table `tb_nilai_mhs` */
 
@@ -79,11 +79,11 @@ CREATE TABLE `tb_nilai_mhs` (
   KEY `id_ujian` (`id_ujian`),
   CONSTRAINT `tb_nilai_mhs_ibfk_1` FOREIGN KEY (`id_mhs`) REFERENCES `tb_mhs` (`id_mhs`),
   CONSTRAINT `tb_nilai_mhs_ibfk_2` FOREIGN KEY (`id_ujian`) REFERENCES `tb_ujian` (`id_ujian`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_nilai_mhs` */
 
-insert  into `tb_nilai_mhs`(`id`,`id_ujian`,`id_mhs`,`nilai_mhs`) values (6,1,1,42.9952);
+insert  into `tb_nilai_mhs`(`id`,`id_ujian`,`id_mhs`,`nilai_mhs`) values (4,1,1,80),(5,1,2,79),(6,1,3,101),(7,1,4,45);
 
 /*Table structure for table `tb_soal` */
 
@@ -94,15 +94,14 @@ CREATE TABLE `tb_soal` (
   `nomor_soal` int(2) DEFAULT NULL,
   `id_ujian` int(11) DEFAULT NULL,
   `soal` varchar(255) DEFAULT NULL,
-  `kunci_jawaban` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_soal`),
   KEY `id_ujian` (`id_ujian`),
   CONSTRAINT `tb_soal_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `tb_ujian` (`id_ujian`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_soal` */
 
-insert  into `tb_soal`(`id_soal`,`nomor_soal`,`id_ujian`,`soal`,`kunci_jawaban`) values (1,2,1,'Apa yang kamu ketahui tentang data warehouse?','suatu sistem komputer untuk mengarsipkan dan menganalisis data historis suatu organisasi seperti data penjualan, gaji, dan informasi lain dari operasi harian'),(2,1,1,'Apa yang kamu ketahui tentang saya?','apa maksud anda menanyakan hal itu?'),(3,3,1,'oskoskdo','osdkosdko'),(4,4,1,'2923893282','2939238923'),(5,5,1,'okoskdos','osdkoskd'),(6,6,1,'soosdkosdkosd','sdkosdkosd'),(7,7,1,'92389839238','2938923823'),(8,8,1,'oskdoskd','oksodksd'),(9,9,1,'292389238','29389238923');
+insert  into `tb_soal`(`id_soal`,`nomor_soal`,`id_ujian`,`soal`) values (13,1,1,'Jelaskan salah satu metode dalam Information Retrieval yang berbasis Vector!'),(14,2,1,'Jelaskan perbedaan Precision dan Recall pada Evaluation IR!');
 
 /*Table structure for table `tb_ujian` */
 
@@ -117,11 +116,11 @@ CREATE TABLE `tb_ujian` (
   PRIMARY KEY (`id_ujian`),
   KEY `id_dosen` (`id_dosen`),
   CONSTRAINT `tb_ujian_ibfk_1` FOREIGN KEY (`id_dosen`) REFERENCES `tb_dosen` (`id_dosen`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_ujian` */
 
-insert  into `tb_ujian`(`id_ujian`,`nama_ujian`,`tgl_buat_ujian`,`tgl_selesai_ujian`,`id_dosen`) values (1,'UAS STKI','2018-10-04 21:40:22','2018-10-05 21:40:26',1),(2,'','2018-10-19 05:02:17','2018-10-15 21:40:26',1),(3,'oskdoskd','2018-10-19 20:08:34','2018-10-19 00:00:00',1),(4,'jojoj','2018-10-19 20:08:58','2018-10-20 00:00:00',1);
+insert  into `tb_ujian`(`id_ujian`,`nama_ujian`,`tgl_buat_ujian`,`tgl_selesai_ujian`,`id_dosen`) values (1,'UAS STKI','2018-10-04 21:40:22','2018-10-05 21:40:26',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -1,4 +1,6 @@
 <?php
+  include 'include/text-processing/LSI2.php';
+  $ceklsi = new LSI2();
   $id_mhs = $_GET['id'];
   $nilai_mhs = mysqli_query($conn, "SELECT * FROM tb_jawaban_mhs INNER JOIN tb_mhs ON tb_mhs.`id_mhs`=tb_jawaban_mhs.`id_mhs` INNER JOIN tb_soal ON tb_soal.`id_soal`=tb_jawaban_mhs.`id_soal` WHERE tb_jawaban_mhs.`id_mhs` = $id_mhs ORDER BY nomor_soal");
   foreach ($nilai_mhs as $nilai) {
@@ -18,9 +20,7 @@
           <tr>
             <th>No</th>
             <th>Soal</th>
-            <th>Kunci Jawaban</th>
             <th>Jawaban Mahasiswa</th>
-            <th>Nilai Similarity</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -31,15 +31,46 @@
           <tr>
             <td><?php echo $nilai['nomor_soal']?></td>
             <td><?php echo $nilai['soal']?></td>
-            <td><?php echo $nilai['kunci_jawaban']?></td>
             <td><?php echo $nilai['jawaban_mhs']?></td>
-            <td><?php echo $nilai['nilai_similarity']; ?></td>
             <td>
-              <a class="btn btn-primary" href="javascript:void(o)">
-                <i class="fas fa-pencil-alt"></i>
-              </a>
+              <a href="#" data-toggle="modal" data-target="#nilaiModal<?php echo $nilai['nomor_soal'] ?>"class="btn btn-warning">
+              <i class="fas fa-eye"></i>
+            </a>  
             </td>
           </tr>
+          <div class="modal fade" id="nilaiModal<?php echo $nilai['nomor_soal'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  
+                  <h5 class="modal-title" id="exampleModalLabel">Kecocokan dengan mahasiswa lain</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <?php
+                    $id_soal = $nilai['id_soal'];
+                    $query_lsi = $nilai['stem_jawaban_mhs'];
+                    $mahasiswa_mengerjakan = mysqli_query($conn, "SELECT * FROM tb_jawaban_mhs INNER JOIN tb_mhs ON tb_jawaban_mhs.`id_mhs` = tb_mhs.`id_mhs` WHERE tb_jawaban_mhs.`id_mhs`!=$id_mhs AND tb_jawaban_mhs.`id_soal` = $id_soal");
+                    $jml_mahasiswa_mengerjakan = mysqli_num_rows($mahasiswa_mengerjakan);
+                    if ($jml_mahasiswa_mengerjakan==0) {
+                      echo "Belum ada mahasiswa lain yang mengerjakan tugas ini";
+                    } else {
+                      foreach ($mahasiswa_mengerjakan as $mhs_lain) {
+                        // echo $mhs_lain['nama_mhs']." ".$mhs_lain['stem_jawaban_mhs'];
+                        $input_lsi = $mhs_lain['stem_jawaban_mhs'];
+                        echo $mhs_lain['nama_mhs']." ".$ceklsi->lsi($query_lsi, $input_lsi)."%<br />";
+                      }
+                    }
+                  ?>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
           <?php
             }
           ?>

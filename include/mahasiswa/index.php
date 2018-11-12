@@ -29,7 +29,7 @@
 					<?php
 						if(isset($_GET['page'])){
 							if($_GET['page']=='nilai'){
-								include 'include/mahasiswa/content_lihat_nilai.php';							
+								include 'include/mahasiswa/content_lihat_nilai.php';
 							}
 							
 						} else {
@@ -68,9 +68,7 @@
 		</a>
 
 		<?php include 'include/footer.php'?>
-		<script type="text/javascript">
-			alert("Halo <?php if(isset($_SESSION['nama_mhs'])){echo $_SESSION['nama_mhs'];} else {echo $_SESSION['nama_dosen'];}?>");
-		</script>
+		
 
 	</body>
 

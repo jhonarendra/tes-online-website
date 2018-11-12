@@ -96,10 +96,17 @@
 			          <span aria-hidden="true">×</span>
 			        </button>
 			      </div>
-			      <div class="modal-body"><?php echo $nilai_ujian_mhs ?></div>
+			      <div class="modal-body">
+			      <?php
+			      	if($nilai_ujian_mhs == 0){
+			      		echo "Belum dikoreksi";
+			      	} else {
+			      		echo $nilai_ujian_mhs;
+			      	}
+			      ?>		
+			      </div>
 			      <div class="modal-footer">
 			        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-			        <!-- <a class="btn btn-primary" href="logout.php">Logout</a> -->
 			      </div>
 			    </div>
 			  </div>
