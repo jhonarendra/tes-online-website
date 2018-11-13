@@ -1,6 +1,6 @@
 <?php
-  include 'include/text-processing/LSI2.php';
-  $ceklsi = new LSI2();
+  include 'include/text-processing/LSI.php';
+  $ceklsi = new LSI();
   $id_mhs = $_GET['id'];
   $nilai_mhs = mysqli_query($conn, "SELECT * FROM tb_jawaban_mhs INNER JOIN tb_mhs ON tb_mhs.`id_mhs`=tb_jawaban_mhs.`id_mhs` INNER JOIN tb_soal ON tb_soal.`id_soal`=tb_jawaban_mhs.`id_soal` WHERE tb_jawaban_mhs.`id_mhs` = $id_mhs ORDER BY nomor_soal");
   foreach ($nilai_mhs as $nilai) {
@@ -60,7 +60,7 @@
                       foreach ($mahasiswa_mengerjakan as $mhs_lain) {
                         // echo $mhs_lain['nama_mhs']." ".$mhs_lain['stem_jawaban_mhs'];
                         $input_lsi = $mhs_lain['stem_jawaban_mhs'];
-                        echo $mhs_lain['nama_mhs']." ".$ceklsi->lsi($query_lsi, $input_lsi)."%<br />";
+                        echo $mhs_lain['nama_mhs']." ".$ceklsi->runLSI($query_lsi, $input_lsi)."%<br />";
                       }
                     }
                   ?>

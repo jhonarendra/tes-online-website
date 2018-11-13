@@ -1,74 +1,148 @@
 <?php
-	/**
-	 * 
-	 */
 	class LSI {
-		public function runlsi($kunci, $jawaban){
-			$all_term = $this->getAllTerm($kunci, $jawaban);
-			$term = $this->getTerm($all_term);
-			$matriks = $this->getMatrix($term, $kunci, $jawaban);
-			$similarity = $this->bobotMatrix($term, $matriks);
-
-			return $similarity;
+		public function runLSI($query, $input){
+			$query = explode(" ", $query);
+			$input = explode(" ", $input);
+			$semua_term = $this->getTerm($query, $input);
+			$matriksA = $this->matriksA($semua_term, $query, $input);
+			$temp = $this->matAxmatAT($matriksA, $semua_term);
+			$lamda = $this->getEigenValue($temp);
+			$eigenvector = $this->getEigenVector($temp, $lamda);
+			$matriksS = $this->getMatriksS($lamda);
+			$sInvers = $this->getMatriksSInvers($matriksS);
+			$pVec = $this->getPanjangVector($eigenvector);
+			$matriksV = $this->getMatriksV($eigenvector, $pVec);
+			$matriksU = $this->getMatriksU($semua_term, $matriksA, $matriksV, $sInvers);
+			$matriksQ = $this->getMatriksQ($semua_term, $matriksA, $matriksU, $sInvers);
+			$similarity = $this->getSimilarity($matriksQ, $matriksV);
+			$similarity[1] = $similarity[1]*100;
+			$similarity[1] = substr($similarity[1], 0, 4);
+			return $similarity[1];
 		}
-		public function getAllTerm($input1, $input2){
+		public function getTerm($query, $input){
 			$i=0;
-			foreach ($input1 as $data1) {
+			foreach ($query as $data1) {
 				$all_term[$i] = $data1;
 				$i++;
 			}
-			foreach ($input2 as $data2) {
+			foreach ($input as $data2) {
 				$all_term[$i] = $data2;
 				$i++;
 			}
 
-			return $all_term;
-		}
-		public function getTerm($input){
-			$i = 0;
+			$c = 0;
 			$term[] = null;
-			foreach ($input as $allTerm) {
-				if(!in_array($allTerm, $term)){
-					$term[$i] = $allTerm;
-					$i++;
+			foreach ($all_term as $all) {
+				if(!in_array($all, $term)){
+					$term[$c] = $all;
+					$c++;
 				}
 			}
 			return $term;
 		}
-		public function getMatrix($input, $kunci, $jawaban){
-			$term = $input;
-			$stemming_kunci_jawaban = $kunci;
-			$stemming_jawaban_mhs = $jawaban;
-			$matriks[][] = null;
+		public function matriksA($term, $query, $input){
 			for ($i=0; $i < sizeof($term); $i++) {
-				if(in_array($term[$i], $stemming_kunci_jawaban)){
-					$counting = array_count_values($stemming_kunci_jawaban);
-					$matriks[$i][0] = $counting[$term[$i]] ;
+				if(in_array($term[$i], $query)){
+					$counting = array_count_values($query);
+					$matriksA[$i][0] = $counting[$term[$i]] ;
 				} else {
-					$matriks[$i][0] = 0;
+					$matriksA[$i][0] = 0;
 				}
-				if(in_array($term[$i], $stemming_jawaban_mhs)){
-					$counting = array_count_values($stemming_jawaban_mhs);
-					$matriks[$i][1] = $counting[$term[$i]];
+				if(in_array($term[$i], $input)){
+					$counting = array_count_values($input);
+					$matriksA[$i][1] = $counting[$term[$i]];
 				} else {
-					$matriks[$i][1] = 0;
+					$matriksA[$i][1] = 0;
 				}
 			}
-			return $matriks;
+			return $matriksA;
 		}
-		public function bobotMatrix($input1, $input2){
-			$term = $input1;
-			$matriks = $input2;
-			$kunci_jwbn_counter = 0;
-			$jwbn_mhs_counter = 0;
+		public function matAxmatAT($matriksA, $term){
+			$temp[0] = 0;
 			for ($i=0; $i < sizeof($term); $i++) { 
-				if($matriks[$i][0]!=0){
-					$kunci_jwbn_counter = $matriks[$i][0]+$kunci_jwbn_counter;
-					$jwbn_mhs_counter = $matriks[$i][1]+$jwbn_mhs_counter;
-				}
+				$temp[0] = $temp[0] + $matriksA[$i][0]*$matriksA[$i][0];
 			}
-			$similarity = $jwbn_mhs_counter*100/$kunci_jwbn_counter;
-			return $similarity;
+			$temp[1] = 0;
+			for ($i=0; $i < sizeof($term); $i++) { 
+				$temp[1] = $temp[1] + $matriksA[$i][0]*$matriksA[$i][1];
+			}
+			$temp[2] = 0;
+			for ($i=0; $i < sizeof($term); $i++) { 
+				$temp[2] = $temp[2] + $matriksA[$i][1]*$matriksA[$i][0];
+			}
+			$temp[3] = 0;
+			for ($i=0; $i < sizeof($term); $i++) { 
+				$temp[3] = $temp[3] + $matriksA[$i][1]*$matriksA[$i][1];
+			}
+			return $temp;
+		}
+		public function getPersamaan($temp){
+			$val[0] = -$temp[0]-$temp[3];
+			$val[1] = $temp[0]*$temp[3]-$temp[1]*$temp[2];
+			return $val;
+		}
+		public function getEigenValue($temp){
+			$ntengah = -$temp[0]-$temp[3];
+			$blkg = $temp[0]*$temp[3]-$temp[1]*$temp[2];
+			$lamda[0] = sqrt(pow($ntengah/2, 2)-$blkg)-$ntengah/2;
+			$lamda[1] = sqrt(pow($ntengah/2, 2)-$blkg)+$ntengah/2;
+			return $lamda;
+		}
+		public function getEigenVector($temp, $lamda){
+			$eigenvec[0] = (1/($temp[0]-$lamda[0]))*$temp[1];
+			$eigenvec[1] = (1/($temp[1]-$lamda[1]))*$temp[1];
+			return $eigenvec;
+		}
+		public function getMatriksS($lamda){
+			$matriksS[0] = sqrt(sqrt(pow($lamda[0], 2)));
+			$matriksS[1] = sqrt(sqrt(pow($lamda[1], 2)));
+			return $matriksS;
+		}
+		public function getMatriksSInvers($matriksS){
+			$sInvers[0] = pow($matriksS[1], -1);
+			$sInvers[1] = pow($matriksS[0], -1);
+			return $sInvers;
+		}
+		public function getPanjangVector($eigenvec){
+			$pVec[0] = sqrt(pow($eigenvec[0], 2)+1);
+			$pVec[1] = sqrt(pow($eigenvec[1], 2)+1);
+			return $pVec;
+		}
+		public function getMatriksV($eigenvec, $pVec){
+			$matriksV[0][0] = $eigenvec[0]/$pVec[0];
+			$matriksV[0][1] = 1/$pVec[0];
+			$matriksV[1][0] = $eigenvec[1]/$pVec[1];
+			$matriksV[1][1] = 1/$pVec[1];
+			return $matriksV;
+		}
+		public function getMatriksU($term, $matriksA, $matriksV, $matriksSInvers){
+			for ($i=0; $i < sizeof($term); $i++) {
+				$matriksU[$i][0] = (($matriksA[$i][0]*$matriksV[0][0])+($matriksA[$i][1]*$matriksV[0][1]))*$matriksSInvers[0];
+				$matriksU[$i][1] = (($matriksA[$i][0]*$matriksV[1][0])+($matriksA[$i][1]*$matriksV[1][1]))*$matriksSInvers[1];
+			}
+			return $matriksU;
+		}
+		public function getMatriksQ($term, $matriksA, $matriksU, $matriksSInvers){
+			$q[0] = null;
+			$q[1] = null;
+			for ($i=0; $i < sizeof($term); $i++) { 
+				// if($matriks[$i][0]!=0){
+					$q[0] = $matriksA[$i][0]*$matriksU[$i][0]+$q[0];
+					$q[1] = $matriksA[$i][1]*$matriksU[$i][1]+$q[1];
+				// }
+			}
+			$q[0] = $q[0]*$matriksSInvers[0];
+			$q[1] = $q[1]*$matriksSInvers[1];
+			return $q;
+		}
+		public function getSimilarity($q, $matriksV){
+			$sim[0] = ($q[0]*$matriksV[0][0]+$q[1]*$matriksV[1][0])/(sqrt(pow($q[0], 2)+pow($q[1], 2))*sqrt(pow($matriksV[0][0], 2)+pow($matriksV[1][0], 2)));
+			$sim[1] = ($q[0]*$matriksV[0][1]+$q[1]*$matriksV[1][1])/(sqrt(pow($q[0], 2)+pow($q[1], 2))*sqrt(pow($matriksV[0][1], 2)+pow($matriksV[1][1], 2)));
+
+			$sim[0] = sqrt(pow($sim[0], 2));
+			$sim[1] = sqrt(pow($sim[1], 2));
+
+			return $sim;
 		}
 	}
 ?>
