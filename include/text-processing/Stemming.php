@@ -9,20 +9,24 @@
 			$results[] = null;
 			$stop = null;
 			foreach ($input as $key=>$word) {
-				$phrase = strtolower($input[$key]);
-				$a = $this->stopwords();
-				foreach ($a as $banned){
-					if($banned == $phrase){
-						$stop = $banned;
+				if (ctype_upper($input[$key])) {
+					$results[$i] = $input[$key];
+				} else {
+					$phrase = strtolower($input[$key]);
+					$a = $this->stopwords();
+					foreach ($a as $banned){
+						if($banned == $phrase){
+							$stop = $banned;
+						}
+					}
+					if ($stop == $phrase){
+
+					} else {
+						$phrase = $this->porterkamus($phrase);
+						$results[$i] = $phrase;
 					}
 				}
-				if ($stop == $phrase){
-
-				} else {
-					$phrase = $this->porterkamus($phrase);
-					$results[$i] = $phrase;
-					$i++;
-				}
+				$i++;
 			}
 			return $results;
 		}
@@ -40,7 +44,7 @@
 			return $a;
 		}
 		public function katadasar(){
-			$katadasar = file_get_contents('include/text-processing/katadasar.txt');
+			$katadasar = file_get_contents('katadasar.txt');
 			$katadasar = $this->tokenisasi($katadasar);
 			return $katadasar;
 		}
