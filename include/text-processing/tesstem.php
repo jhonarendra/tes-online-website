@@ -3,5 +3,5 @@
 
 	$textproc = new Stemming();
 
-	echo json_encode($textproc->stem('LSI lsi'));
+	echo json_encode($textproc->stem('STKI stki'));
 ?>
