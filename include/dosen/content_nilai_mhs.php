@@ -57,7 +57,7 @@
 							?>	
 						</td>
 						<td>
-							<a class="btn btn-primary" href="?page=nilai_mhs&aksi=lihat&id=<?php echo $nilai_mhs['id_mhs']?>">
+							<a class="btn btn-primary" href="?page=nilai_mhs&aksi=lihat&id=<?php echo $nilai_mhs['id_mhs']?>&id_ujian=<?php echo $id_ujian?>">
 								<i class="fas fa-eye"></i>
 							</a>
 							<a href="#" data-toggle="modal" data-target="#inputNilai<?php echo $nilai_mhs['id_mhs'] ?>"class="btn btn-success">
