@@ -32,6 +32,10 @@
 									if (isset($_GET['aksi'])) {
 										if($_GET['aksi']=='tambah_soal'){
 											include 'include/dosen/content_tambah_soal.php';
+										} else if($_GET['aksi']=='hapus'){
+											include 'include/dosen/content_hapus_ujian.php';
+										} else if($_GET['aksi']=='edit'){
+											include 'include/dosen/content_edit_ujian.php';
 										}
 									} else {
 										include 'include/dosen/content_lihat_ujian.php';

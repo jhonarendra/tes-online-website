@@ -13,12 +13,13 @@
 						<th>Dosen</th>
 						<th>Tanggal Ujian</th>
 						<th>Tanggal Selesai</th>
+						<th>Status Ujian</th>
 						<th>Aksi</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php
-						$semua_ujian = mysqli_query($conn, "SELECT * FROM tb_ujian INNER JOIN tb_dosen ON tb_ujian.`id_dosen`=tb_dosen.`id_dosen`");
+						$semua_ujian = mysqli_query($conn, "SELECT * FROM tb_ujian INNER JOIN tb_dosen ON tb_ujian.`id_dosen`=tb_dosen.`id_dosen` WHERE status_ujian != 'Dihapus' ");
 						foreach ($semua_ujian as $ujian) {
 					?>
 					<tr>
@@ -27,12 +28,16 @@
 						<td><?php echo $ujian['nama_dosen']?></td>
 						<td><?php echo $ujian['tgl_buat_ujian']?></td>
 						<td><?php echo $ujian['tgl_selesai_ujian']?></td>
+						<td><?php echo $ujian['status_ujian'] ?></td>
 						<td>
-							<a class="btn btn-danger" href="javascript:void(o)">
+							<a class="btn btn-danger" href="?page=ujian&id_ujian=<?php echo $ujian['id_ujian'] ?>&aksi=hapus">
 								<i class="fas fa-trash"></i>
 							</a>
 							<a class="btn btn-primary" href="?page=ujian&id_ujian=<?php echo $ujian['id_ujian'] ?>">
 								<i class="fas fa-eye"></i>
+							</a>
+							<a class="btn btn-success" href="?page=ujian&id_ujian=<?php echo $ujian['id_ujian'] ?>&aksi=edit">
+								<i class="fas fa-pencil-alt"></i>
 							</a>
 						</td>
 					</tr>

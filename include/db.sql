@@ -97,11 +97,11 @@ CREATE TABLE `tb_soal` (
   PRIMARY KEY (`id_soal`),
   KEY `id_ujian` (`id_ujian`),
   CONSTRAINT `tb_soal_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `tb_ujian` (`id_ujian`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_soal` */
 
-insert  into `tb_soal`(`id_soal`,`nomor_soal`,`id_ujian`,`soal`) values (13,1,1,'Jelaskan salah satu metode dalam Information Retrieval yang berbasis Vector!'),(14,2,1,'Jelaskan perbedaan Precision dan Recall pada Evaluation IR!');
+insert  into `tb_soal`(`id_soal`,`nomor_soal`,`id_ujian`,`soal`) values (13,1,1,'Jelaskan salah satu metode dalam Information Retrieval yang berbasis Vector!'),(14,2,1,'Jelaskan perbedaan Precision dan Recall pada Evaluation IR!'),(15,3,1,'Siapakah nama saya?'),(16,4,1,'Mengapa saya disini?');
 
 /*Table structure for table `tb_ujian` */
 
@@ -113,14 +113,15 @@ CREATE TABLE `tb_ujian` (
   `tgl_buat_ujian` datetime DEFAULT NULL,
   `tgl_selesai_ujian` datetime DEFAULT NULL,
   `id_dosen` int(11) DEFAULT NULL,
+  `status_ujian` enum('Aktif','Selesai','Dihapus') DEFAULT NULL,
   PRIMARY KEY (`id_ujian`),
   KEY `id_dosen` (`id_dosen`),
   CONSTRAINT `tb_ujian_ibfk_1` FOREIGN KEY (`id_dosen`) REFERENCES `tb_dosen` (`id_dosen`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_ujian` */
 
-insert  into `tb_ujian`(`id_ujian`,`nama_ujian`,`tgl_buat_ujian`,`tgl_selesai_ujian`,`id_dosen`) values (1,'UAS STKI','2018-10-04 21:40:22','2018-10-05 21:40:26',1);
+insert  into `tb_ujian`(`id_ujian`,`nama_ujian`,`tgl_buat_ujian`,`tgl_selesai_ujian`,`id_dosen`,`status_ujian`) values (1,'UAS STKI Lanjutan','2018-10-04 21:40:22','2018-10-05 21:40:26',1,'Aktif'),(2,'tes','2018-10-04 21:40:22','2018-10-05 21:40:26',1,'Dihapus');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
