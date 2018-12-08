@@ -1,22 +1,32 @@
 <?php
 	class LSI {
 		public function runLSI($query, $input){
-			$query = explode(" ", $query);
-			$input = explode(" ", $input);
-			$semua_term = $this->getTerm($query, $input);
-			$matriksA = $this->matriksA($semua_term, $query, $input);
-			$temp = $this->matAxmatAT($matriksA, $semua_term);
-			$lamda = $this->getEigenValue($temp);
-			$eigenvector = $this->getEigenVector($temp, $lamda);
-			$matriksS = $this->getMatriksS($lamda);
-			$sInvers = $this->getMatriksSInvers($matriksS);
-			$pVec = $this->getPanjangVector($eigenvector);
-			$matriksV = $this->getMatriksV($eigenvector, $pVec);
-			$matriksU = $this->getMatriksU($semua_term, $matriksA, $matriksV, $sInvers);
-			$matriksQ = $this->getMatriksQ($semua_term, $matriksA, $matriksU, $sInvers);
-			$similarity = $this->getSimilarity($matriksQ, $matriksV);
-			$similarity[1] = $similarity[1]*100;
-			$similarity[1] = substr($similarity[1], 0, 4);
+			if($query == $input){
+				$similarity[1] = 100;
+			} else {
+				$query = explode(" ", $query);
+				$input = explode(" ", $input);
+				$semua_term = $this->getTerm($query, $input);
+				$matriksA = $this->matriksA($semua_term, $query, $input);
+				$temp = $this->matAxmatAT($matriksA, $semua_term);
+
+				$val = $this->getPersamaan($temp);
+				if($val[1]==0){
+					$similarity[1] = 100;
+				} else {
+					$lamda = $this->getEigenValue($temp);
+					$eigenvector = $this->getEigenVector($temp, $lamda);
+					$matriksS = $this->getMatriksS($lamda);
+					$sInvers = $this->getMatriksSInvers($matriksS);
+					$pVec = $this->getPanjangVector($eigenvector);
+					$matriksV = $this->getMatriksV($eigenvector, $pVec);
+					$matriksU = $this->getMatriksU($semua_term, $matriksA, $matriksV, $sInvers);
+					$matriksQ = $this->getMatriksQ($semua_term, $matriksA, $matriksU, $sInvers);
+					$similarity = $this->getSimilarity($matriksQ, $matriksV);
+					$similarity[1] = $similarity[1]*100;
+					$similarity[1] = substr($similarity[1], 0, 4);
+				}
+			}
 			return $similarity[1];
 		}
 		public function getTerm($query, $input){

@@ -1,18 +1,48 @@
+<fieldset>
+	<legend>Input</legend>
+	<form action="" method="POST">
+		<textarea name="query" style="width: 100%" rows="10">query</textarea>
+		<textarea name="input" style="width: 100%" rows="10">input</textarea><br />
+		<input type="submit" value="Cek Similarity">
+	</form>
+</fieldset>
 <?php
 	include 'LSI.php';
+	include 'Stemming.php';
 
+	if (!isset($_POST['query'])) {
+		$query = "Metode dalam information retrieval yang berbasis vektor ada GVSM, LSI dan Neural Network. Saya akan menjelaskan metode LSI. LSI adalah metode IR berbasis vektor yang dapat mengukur similarity atau kemiripan dari suatu dokumen teks. Pertama, dibuatkan matriks A yang merupakan semua term dari semua data. Setelah itu dikalikan dengan matriks vektor A Transpos. Didapat sebuah matriks untuk dihitung eigenvalue dan eigenvector. Setelah didapat eigenvalue dan eigenvector, dijadikan matriks dan dinormalisasi menggunakan rumus. Terakhir, hasil perkalian matriks eigen dengan matriks A, dikali dengan matriks vector query sehingga didapat nilai similarity.";
+		$input = "LSI adalah metode information retrieval berbasis vektor. LSI atau latent semantic indexing menggunakan persamaan eigen untuk mencari kemiripan antar dokumen. Nanti vector akan dikalikan dengan vector query untuk dibandingkan dengan dokumen lain.";
+	} else {
+		$query = $_POST['query'];
+		$input = $_POST['input'];
+	}
 
-	$query = " metode information retrieval basis vektor gvsm ls neural network metode ls ls metode ir basis vektor ukur similarity mirip dokumen teks buat matriks term data kali matriks vektor transpos dapat matriks hitung eigenvalue eigenvector dapat eigenvalue eigenvector jadi matriks normalisasi rumus kalian matriks eigen matriks kali matriks vector query dapat nilai similarity";
-	$input = " ls metode information retrieval basis vektor ls latent mantic indexing sama eigen mirip antar dokumen vector kali vector query banding dokumen";
+	// $query = " metode information retrieval basis vektor gvsm ls neural network metode ls ls metode ir basis vektor ukur similarity mirip dokumen teks buat matriks term data kali matriks vektor transpos dapat matriks hitung eigenvalue eigenvector dapat eigenvalue eigenvector jadi matriks normalisasi rumus kalian matriks eigen matriks kali matriks vector query dapat nilai similarity";
+	// $input = " ls metode information retrieval basis vektor ls latent mantic indexing sama eigen mirip antar dokumen vector kali vector query banding dokumen";
 
-	$query = explode(" ", $query);
-	$input = explode(" ", $input);
-
-	echo "Query<br />".json_encode($query)."<br /><br />";
-	echo "Input<br />".json_encode($input)."<br /><br />";
+	echo "Query<br />".$query."<br /><br />";
+	echo "Input<br />".$input."<br /><br />";
 
 	$lsi = new LSI();
+	$textproc = new Stemming();
+
+	$query = $textproc->stem($query);
+	$input = $textproc->stem($input);
+
+	$queries = '';
+	foreach ($query as $key) {
+		$queries = $queries." ".$key;
+	}
+	$inputs = '';
+	foreach ($input as $key) {
+		$inputs = $inputs." ".$key;
+	}
+
 	$semua_term = $lsi->getTerm($query, $input);
+
+	$similarity_langsung = $lsi->runLSI($queries, $inputs);
+
 	echo "Semua term<br />".json_encode($semua_term)."<br /><br />";
 
 	$matriksA = $lsi->matriksA($semua_term, $query, $input);
@@ -181,16 +211,8 @@
 	$similarity = $lsi->getSimilarity($matriksQ, $matriksV);
 	echo "sim(q,d1) = ".$similarity[0]."<br />";
 	echo "sim(q,d2) = ".$similarity[1];
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
+
+<script type="text/javascript">
+	alert("<?php echo $similarity_langsung?>")
+</script>

@@ -19,7 +19,6 @@
 					<tr>
 						<th>No</th>
 						<th>Soal</th>
-						<th>Aksi</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -30,14 +29,6 @@
 					<tr>
 						<td><?php echo $soal['nomor_soal']?></td>
 						<td><?php echo $soal['soal']?></td>
-						<td>
-							<a class="btn btn-danger" href="javascript:void(o)">
-								<i class="fas fa-trash"></i>
-							</a>
-							<a class="btn btn-primary" href="javascript:void(o)">
-								<i class="fas fa-pencil-alt"></i>
-							</a>
-						</td>
 					</tr>
 					<?php
 						}
