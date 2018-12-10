@@ -3,12 +3,11 @@
 	if(isset($_POST['submit'])){
 		date_default_timezone_set("Asia/Manila");
 		$datetime = date("Y-m-d H:i:s");
-
 		$nama_ujian = $_POST['nama_ujian'];
 		$ujian_selesai = $_POST['ujian_selesai'];
 
-		$buat_ujian = mysqli_query($conn, "INSERT INTO tb_ujian VALUES(NULL, '$nama_ujian', '$datetime', '$ujian_selesai', $id_dosen)");
-		header('Location: dosen?page=ujian');
+		$buat_ujian = mysqli_query($conn, "INSERT INTO tb_ujian VALUES(NULL, '$nama_ujian', '$datetime', '$ujian_selesai', $id_dosen, 'Aktif')");
+		header('Location: ../dosen');
 	}
 ?>
 <div class="card mb-3">

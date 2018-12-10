@@ -1,8 +1,70 @@
-<?php include 'include/head.php';
-		?>
-<?php
-	// INI ISI LANDING PAGE
+<!doctype html>
+<html lang="en" class="fullscreen-bg">
 
+<head>
+	<title>Login | Klorofil - Free Bootstrap Dashboard Template</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="<?php echo $web_url."template"?>/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo $web_url."template"?>/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?php echo $web_url."template"?>/vendor/linearicons/style.css">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="<?php echo $web_url."template"?>/css/main.css">
+	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+	<link rel="stylesheet" href="<?php echo $web_url."template"?>/css/demo.css">
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="76x76" href="<?php echo $web_url."template"?>/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="<?php echo $web_url."template"?>/img/favicon.png">
+</head>
+<body>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<div class="vertical-align-wrap">
+			<div class="vertical-align-middle">
+				<div class="auth-box ">
+					<div class="left">
+						<div class="content">
+							<div class="header">
+								<div class="logo text-center"><img src="<?php echo $web_url."template"?>/img/logo-dark.png" alt="Klorofil Logo"></div>
+								<p class="lead">Login to your account</p>
+							</div>
+							<form class="form-auth-small" action="" method="POST">
+								<div class="form-group">
+									<label for="signin-email" class="control-label sr-only">Username</label>
+									<input type="text" name="username" class="form-control" id="signin-email" placeholder="Username">
+								</div>
+								<div class="form-group">
+									<label for="signin-password" class="control-label sr-only">Password</label>
+									<input type="password" class="form-control" id="signin-password" name="password" placeholder="Password">
+								</div>
+								<button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
+								<div class="bottom">
+									<span class="helper-text"><i class="fa fa-lock"></i> <a href="#">Forgot password?</a></span>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="right">
+						<div class="overlay"></div>
+						<div class="content text">
+							<h1 class="heading">Free Bootstrap dashboard template</h1>
+							<p>by The Develovers</p>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END WRAPPER -->
+</body>
+
+</html>
+<?php
 	if(isset($_POST['username'])){
 		$username = $_POST['username'];
 		$password = $_POST['password'];
@@ -45,37 +107,7 @@
 				echo "<a href=\"dosen\">Halaman Dosen</a>";
 			}
 		} else {
-?>
-<div class="container">
-	<div class="card card-login mx-auto mt-5">
-		<div class="card-header">Sign In</div>
-		<div class="card-body">
-			<form method='POST' action=''>
-				<!-- <div class='form-horizontal'> -->
-					<div class="form-group">
-						<div class="form-label-group">
-							<input type="text" name="username" class='form-control' id="fnama" required="isi" />
-							<label for="fname">Email address</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="form-label-group">
-							<input type="password" name="password" class='form-control' id="nim" required="isi" />
-							<label for="fnim">Password</label>
-						</div>
-					</div>
-					<div class='center-block'>
-						<input type='submit' id='kirim' class="btn btn-primary" />
 
-						<a class="btn btn-success" href="register.php">Register</a>
-					</div>
-				<!-- </d	iv> -->
-			</form>
-		</div>
-	</div>
-</div>	
-<?php
 		}
 	}
 ?>
- <?php include 'include/footer.php'?>

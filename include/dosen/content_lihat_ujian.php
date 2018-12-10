@@ -1,6 +1,6 @@
 <?php
-	$id_ujian = $_GET['id_ujian'];
-	$data_ujian = mysqli_query($conn, "SELECT * FROM tb_ujian INNER JOIN tb_dosen ON tb_ujian.`id_dosen`=tb_dosen.`id_dosen` WHERE id_ujian=$id_ujian");
+	$id_ujian = $sluguri;
+	$data_ujian = mysqli_query($conn, "SELECT * FROM tb_ujian INNER JOIN tb_dosen ON tb_ujian.`id_dosen`=tb_dosen.`id_dosen` WHERE id_ujian = $id_ujian");
 	foreach ($data_ujian as $ujian) {
 		$nama_ujian = $ujian['nama_ujian'];
 		$nama_dosen = $ujian['nama_dosen'];
@@ -12,7 +12,7 @@
 	</div>
 	
 	<div class="card-body">
-		<a class="btn-success btn" href="?page=ujian&id_ujian=<?php echo $id_ujian?>&aksi=tambah_soal">Tambah Soal</a><br /><br />
+		<a class="btn-success btn" href="tambah-soal">Tambah Soal</a><br /><br />
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 				<thead>

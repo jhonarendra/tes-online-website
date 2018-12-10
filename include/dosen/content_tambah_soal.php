@@ -1,5 +1,5 @@
 <?php
-	$id_ujian = $_GET['id_ujian'];
+	$id_ujian = $sluguri;
 	$semua_soal = mysqli_query($conn, "SELECT * FROM tb_soal WHERE id_ujian = $id_ujian ORDER BY nomor_soal");
 	$nomor_soal = 0;
 	foreach ($semua_soal as $soal) {
@@ -13,7 +13,7 @@
 				$semua_soal = mysqli_query($conn, "INSERT INTO tb_soal VALUES(null, $i, $id_ujian, '$soal')");
 			}
 		}
-		header('Location: dosen?page=ujian');
+		header('Location: ../../dosen');
 	}
 ?>
 <div class="card mb-3">

@@ -1,8 +1,8 @@
 <?php
   include 'include/text-processing/LSI.php';
   $ceklsi = new LSI();
-  $id_mhs = $_GET['id'];
-  $id_ujian = $_GET['id_ujian'];
+  $id_mhs = $slugurimhs;
+  $id_ujian = $sluguri;
   $nilai_mhs = mysqli_query($conn, "SELECT * FROM tb_jawaban_mhs INNER JOIN tb_mhs ON tb_mhs.`id_mhs`=tb_jawaban_mhs.`id_mhs` INNER JOIN tb_soal ON tb_soal.`id_soal`=tb_jawaban_mhs.`id_soal` WHERE tb_jawaban_mhs.`id_mhs` = $id_mhs AND id_ujian=$id_ujian ORDER BY nomor_soal");
   foreach ($nilai_mhs as $nilai) {
     $nama_mhs=$nilai['nama_mhs'];

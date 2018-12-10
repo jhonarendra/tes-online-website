@@ -1,5 +1,5 @@
 <?php
-	$id_ujian = $_GET['id_ujian'];
+	$id_ujian = $sluguri;
 	if (isset($_POST['submit'])) {
 		$id_mhs = $_POST['id_mhs'];
 		$nilai_mhs = $_POST['nilai_mhs'];
@@ -57,7 +57,7 @@
 							?>	
 						</td>
 						<td>
-							<a class="btn btn-primary" href="?page=nilai_mhs&aksi=lihat&id=<?php echo $nilai_mhs['id_mhs']?>&id_ujian=<?php echo $id_ujian?>">
+							<a class="btn btn-primary" href="<?php echo $web_url."dosen/".$nilai_mhs['id_ujian']."/lihat-nilai/".$nilai_mhs['id_mhs'] ?>">
 								<i class="fas fa-eye"></i>
 							</a>
 							<a href="#" data-toggle="modal" data-target="#inputNilai<?php echo $nilai_mhs['id_mhs'] ?>"class="btn btn-success">

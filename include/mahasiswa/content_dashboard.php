@@ -1,121 +1,70 @@
 <?php
   $id_mhs = $_SESSION['id_mhs'];
-  $ujian = mysqli_query($conn, "SELECT tb_ujian.* , tb_dosen.`nama_dosen` FROM tb_ujian INNER JOIN tb_dosen ON tb_dosen.`id_dosen`=tb_ujian.`id_dosen`");
+  $ujian = mysqli_query($conn, "SELECT tb_ujian.* , tb_dosen.`nama_dosen` FROM tb_ujian INNER JOIN tb_dosen ON tb_dosen.`id_dosen`=tb_ujian.`id_dosen` WHERE status_ujian!='Dihapus'");
   $i=1; 
   foreach ($ujian as $nilai) {
     $nama_mhs=$nilai;
   }
 
 ?>
-<div class="card mb-3">
-	<div class="card-header">
-		<i class="fas fa-table"></i> Dashboard
-	</div>
-	<div class="card-body">
-		<table class="table">
-        <thead>
-            <tr>
-				<th scope="col">No</th>
-				<th scope="col">Nama Ujian</th>
-				<th scope="col">Tanggal Mulai</th>
-				<th scope="col">Tanggal Akhir</th>
-				<th scope="col">Dosen</th>
-				<th scope="col">Status</th>
-				<th scope="col">Aksi</th>
-            </tr>
-        </thead>
-		<?php
-            foreach ($ujian as $nilai) {
-          ?>		
-        <tbody>
-            <tr>
-				<td><?php echo $i?></td>
-				<td><?php echo $nilai['nama_ujian']?></td>
-				<td><?php echo $nilai['tgl_buat_ujian']?></td>
-				<td><?php echo $nilai['tgl_selesai_ujian']?></td>
-				<td><?php echo $nilai['nama_dosen']?></td>
-				<td>
-					<?php
-						$id_ujian = $nilai['id_ujian'];
-						$cek_jawab = mysqli_query($conn, "SELECT * FROM tb_jawaban_mhs INNER JOIN tb_soal ON tb_jawaban_mhs.`id_soal`=tb_soal.`id_soal` INNER JOIN tb_ujian ON tb_soal.`id_ujian`=tb_ujian.`id_ujian`WHERE tb_jawaban_mhs.`id_mhs`=$id_mhs AND tb_ujian.`id_ujian`=$id_ujian");
-						$numrow = mysqli_num_rows($cek_jawab);
-						if($numrow==0){
-					?>
-					<button class="btn btn-danger"><i class="fas fa-times"></i> Belum Dikerjakan</button>	
-					<?php
-						} else {
-					?>
-					<button class="btn btn-success"><i class="fas fa-check"></i> Sudah Dikerjakan</button>	
-					<?php
-						}
-					?>
-				</td>
-				<td>
-					<div class="btn-group" role="group" aria-label="Basic example">
-						<?php
-							if($numrow==0){
-						?>
-						<a class="btn btn-primary" href="?kerjakan=<?php echo $nilai['nama_ujian'] ?>">
-							<i class="fas fa-pencil-alt"></i>
-						</a>
-						<?php
-							} else {
+<div class="main">
+	<!-- MAIN CONTENT -->
+	<div class="main-content">
+		<div class="container-fluid">
+			<h3 class="page-title">Daftar Ujian</h3>
+			<div class="row">
+				<?php
+					foreach ($ujian as $nilai) {
+				?>
+				<div class="col-md-3">
+					<!-- PANEL HEADLINE -->
+					<div class="panel panel-headline">
+						<div class="panel-heading">
+							<h3 class="panel-title"><?php echo $nilai['nama_ujian']; ?></h3>
+							<p class="panel-subtitle"><?php echo $nilai['nama_dosen']; ?></p>
+						</div>
+						<div class="panel-body">
+							<?php
+								if($nilai['status_ujian']=="Aktif") {
+							?>
+							<span class="label label-success">Aktif</span><br /><br />
+							<?php
+								} else {
+							?>
+							<span class="label label-danger">Tidak Aktif</span><br /><br />
+							<?php
+								}
+								$id_ujian = $nilai['id_ujian'];
+								$cek_kerjakan = mysqli_query($conn, "SELECT * FROM tb_nilai_mhs WHERE id_mhs = $id_mhs AND id_ujian = $id_ujian");
 
-							}
-						?>	
-						<a href="#" data-toggle="modal" data-target="#nilaiModal<?php echo $nilai['id_ujian'] ?>"class="btn btn-warning">
-							<i class="fas fa-eye"></i>
-						</a>						
-					</div>				
-				</td>
-            </tr>
-			<?php
-				$i++;
-			?>
-			<!-- Logout Modal-->
-			<div class="modal fade" id="nilaiModal<?php echo $nilai['id_ujian'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			      	<?php
-			      		$id_ujian_row = $nilai['id_ujian'];
-			      		$nilai_mahasiswa=mysqli_query($conn, "SELECT * FROM tb_nilai_mhs WHERE id_mhs=$id_mhs AND id_ujian = $id_ujian_row");
-			      		$numrow_nilai = mysqli_num_rows($nilai_mahasiswa);
-			      		if ($numrow_nilai==0) {
-			      			$modal_title = "Anda Belum Mengerjakan";
-			      			$nilai_ujian_mhs = "Klik tombol kerjakan untuk menyelesaikan ujian!";
-			      		} else {
-			      			$modal_title = "Nilai Anda";
-			      			foreach ($nilai_mahasiswa as $nilainya) {
-			      				$nilai_ujian_mhs = $nilainya['nilai_mhs'];
-			      			}
-			      		}
-			      	?>
-			        <h5 class="modal-title" id="exampleModalLabel"><?php echo $modal_title ?></h5>
-			        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">×</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			      <?php
-			      	if($nilai_ujian_mhs == 0){
-			      		echo "Belum dikoreksi";
-			      	} else {
-			      		echo $nilai_ujian_mhs;
-			      	}
-			      ?>		
-			      </div>
-			      <div class="modal-footer">
-			        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-			      </div>
-			    </div>
-			  </div>
+								if(mysqli_num_rows($cek_kerjakan)==0){
+									$nilai_mhs = 'Belum dikoreksi';
+							?>
+								<a class="btn btn-danger" href="mahasiswa/kerjakan/<?php echo $id_ujian?>"><i class="fa fa-check-circle"></i> Belum dikerjakan</a>
+							<?php
+								} else {
+									foreach ($cek_kerjakan as $key) {
+										$nilai_mhs = $key['nilai_mhs'];
+									}
+							?>
+								<a class="btn btn-success" href="#"><i class="fa fa-check-circle"></i> Sudah dikerjakan</a>
+							<?php
+								}
+							?>
+							<p style="text-align: right;">
+								<?php
+									echo "<br />Nilai: ".$nilai_mhs;
+								?>
+							</p>
+						</div>
+					</div>
+					<!-- END PANEL HEADLINE -->
+				</div>
+				<?php
+					}
+				?>
 			</div>
-			<?php
-            }
-          ?>			
-        </tbody>
-    </table>		
+		</div>
 	</div>
-	<div class="card-footer small text-muted">Latent Semantic Index | Tes Online 2018</div>
+	<!-- END MAIN CONTENT -->
 </div>

@@ -1,33 +1,37 @@
-<nav class="navbar navbar-expand navbar-dark color-navbar static-top">
-
-<a class="navbar-brand mr-1" href="index.html">Dashboard</a>
-
-<button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-  <i class="fas fa-bars"></i>
-</button>
-
-<!-- Navbar Search -->
-<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" style="visibility: hidden;">
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-    <div class="input-group-append">
-      <button class="btn btn-primary" type="button">
-        <i class="fas fa-search"></i>
-      </button>
-    </div>
-  </div>
-</form>
-
-<!-- Navbar -->
-<ul class="navbar-nav ml-auto ml-md-0">
-  <li class="nav-item dropdown no-arrow">
-    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <i class="fas fa-user-circle fa-fw"></i>
-    </a>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-    </div>
-  </li>
-</ul>
-
-</nav>
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="brand">
+          <a href="index.html"><img src="template/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+        </div>
+        <div class="container-fluid">
+          <div class="navbar-btn">
+            <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+          </div>
+          
+          <div id="navbar-menu">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo $web_url.'template'?>/img/user.png" class="img-circle" alt="Avatar"> <span>
+                    <?php
+                      if (isset($_SESSION['nama_mhs'])) {
+                        echo $_SESSION['nama_mhs'];
+                      } else {
+                        echo $_SESSION['nama_dosen'];
+                      }
+                      
+                    ?>
+                      
+                    </span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+                  <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
+                  <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
+                  <li><a href="<?php echo $web_url.'logout.php';?>"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+                </ul>
+              </li>
+              <!-- <li>
+                <a class="update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+      </nav>

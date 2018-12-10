@@ -18,9 +18,9 @@
     </div>
 
     
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="assets/vendor/datatables/jquery.dataTables.js"></script>
-    <script src="assets/vendor/datatables/dataTables.bootstrap4.js"></script>
-    <script src="assets/js/sb-admin.min.js"></script>
-    <script src="assets/js/demo/datatables-demo.js"></script>
+    <script src="<?php echo $web_url ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo $web_url ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<?php echo $web_url ?>assets/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="<?php echo $web_url ?>assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="<?php echo $web_url ?>assets/js/sb-admin.min.js"></script>
+    <script src="<?php echo $web_url ?>assets/js/demo/datatables-demo.js"></script>
