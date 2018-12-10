@@ -46,7 +46,7 @@
 <html lang="en" class="fullscreen-bg">
 
 <head>
-	<title>Login | Klorofil - Free Bootstrap Dashboard Template</title>
+	<title>Login | Tes Online LSI</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -61,8 +61,8 @@
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
-	<link rel="apple-touch-icon" sizes="76x76" href="<?php echo $web_url."template"?>/img/apple-icon.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="<?php echo $web_url."template"?>/img/favicon.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="<?php echo $web_url."template"?>/img/icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="<?php echo $web_url."template"?>/img/icon.png">
 </head>
 <body>
 	<!-- WRAPPER -->
@@ -73,7 +73,7 @@
 					<div class="left">
 						<div class="content">
 							<div class="header">
-								<div class="logo text-center"><img src="<?php echo $web_url."template"?>/img/logo-dark.png" alt="Klorofil Logo"></div>
+								<div class="logo text-center"><img src="<?php echo $web_url."template"?>/img/icon2.png" alt="Klorofil Logo" style="width: 100px; height:100px" /></div>
 								<p class="lead">Login to your account</p>
 							</div>
 							<form class="form-auth-small" action="" method="POST">
@@ -92,8 +92,8 @@
 					<div class="right">
 						<div class="overlay"></div>
 						<div class="content text">
-							<h1 class="heading">Free Bootstrap dashboard template</h1>
-							<p>by The Develovers</p>
+							<h1 class="heading">Tes Online LSI</h1>
+							<p>Tes online isian dengan fitur cek similarity dengan metode LSI</p>
 						</div>
 					</div>
 					<div class="clearfix"></div>
