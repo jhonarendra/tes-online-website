@@ -16,41 +16,43 @@
 		header('Location: ../../dosen');
 	}
 ?>
-<div class="card mb-3">
-	<div class="card-header">
-		<i class="fas fa-table"></i> Tambah Soal
-	</div>
-	<div class="card-body">
-		<form id="form" action="" method="POST">
-			<div class="row">
-				<div class="col-sm-1">
-					<p class="h1">
-						<?php echo $nomor_soal;?>
-					</p>
+
+<div class="main">
+	<!-- MAIN CONTENT -->
+	<div class="main-content">
+		<div class="container-fluid">
+			<h3 class="page-title">Tambah Soal</h3>
+			<form id="form" action="" method="POST">
+				<div class="row">
+					<div class="col-sm-1">
+						<p class="h1">
+							<?php echo $nomor_soal;?>
+						</p>
+					</div>
+					<div class="col-sm-7">
+						<label for="soal1">Soal</label>
+						<textarea class="form-control" name="soal<?php echo $nomor_soal;?>" rows="3"></textarea>
+					</div>  
 				</div>
-				<div class="col-sm-5">
-					<label for="soal1">Soal</label>
-					<textarea class="form-control" name="soal<?php echo $nomor_soal;?>" rows="3"></textarea>
-				</div>  
-			</div>
 
-			<div class="form-group" style="position: fixed;z-index: 9999;right: 20px;bottom:20x">
-				<a class="btn btn-primary" id="btn-tambah-soal" href="javascript:void(o)">
-					<i class="fas fa-plus"></i> Tambah Soal
-				</a>  
-				<button class="btn btn-success" type="submit" name="submit" id="btn-tambah-soal">
-					Submit
-				</button>           
-			</div>
-		</form>
-		<br />
-		<script type="text/javascript">
-			var count=<?php echo $nomor_soal;?>;
-			$('#btn-tambah-soal').click(function(){
-				count++;
-				$("#form").append($("<div class=\"row\"><div class=\"col-sm-1\"><p class=\"h1\">"+count+"</p></div><div class=\"col-sm-5\"><label for=\"soal"+count+"\">Soal</label><textarea class=\"form-control\" name=\"soal"+count+"\" rows=\"3\"></textarea></div></div>"));
+				<div class="form-group" style="position: fixed;z-index: 9999;right: 20px;bottom:20x">
+					<a class="btn btn-primary" id="btn-tambah-soal" href="javascript:void(o)">
+						Tambah Soal
+					</a>  
+					<button class="btn btn-success" type="submit" name="submit" id="btn-tambah-soal">
+						Submit
+					</button>           
+				</div>
+			</form>
+			<br />
+			<script type="text/javascript">
+				var count=<?php echo $nomor_soal;?>;
+				$('#btn-tambah-soal').click(function(){
+					count++;
+					$("#form").append($("<div class=\"row\"><div class=\"col-sm-1\"><p class=\"h1\">"+count+"</p></div><div class=\"col-sm-7\"><label for=\"soal"+count+"\">Soal</label><textarea class=\"form-control\" name=\"soal"+count+"\" rows=\"3\"></textarea></div></div>"));
 
-			});
-		</script>
+				});
+			</script>
+		</div>
 	</div>
 </div>

@@ -14,6 +14,8 @@
 	<link rel="stylesheet" href="<?php echo $web_url.'template';?>/css/main.css">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
 	<link rel="stylesheet" href="<?php echo $web_url.'template';?>/css/demo.css">
+
+	<script src="<?php echo $web_url.'template'?>/vendor/jquery/jquery.min.js"></script>
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
@@ -27,7 +29,7 @@
 		<?php include 'include/navbar.php'; ?>
 		<!-- END NAVBAR -->
 		<!-- LEFT SIDEBAR -->
-		<?php include 'include/mahasiswa/sidebar_mhs.php'?>
+		<?php include 'include/dosen/sidebar_dosen.php'?>
 		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
 		<?php
@@ -78,7 +80,6 @@
 		</div>
 		<!-- END WRAPPER -->
 		<!-- Javascript -->
-		<script src="<?php echo $web_url.'template'?>/vendor/jquery/jquery.min.js"></script>
 		<script src="<?php echo $web_url.'template'?>/vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="<?php echo $web_url.'template'?>/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 		<script src="<?php echo $web_url.'template'?>/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>

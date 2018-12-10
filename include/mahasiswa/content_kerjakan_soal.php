@@ -28,7 +28,7 @@
 			}
 		}
 		$insert_nilai = mysqli_query($conn, "INSERT INTO tb_nilai_mhs VALUES(NULL, $id_ujian, $id_mhs, 0);");
-		header('Location: mahasiswa');
+		header('Location: ../../mahasiswa');
 	}
 ?>
 <div class="main">

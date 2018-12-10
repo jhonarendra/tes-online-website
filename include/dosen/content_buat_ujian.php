@@ -10,17 +10,30 @@
 		header('Location: ../dosen');
 	}
 ?>
-<div class="card mb-3">
-	<div class="card-header">
-		<i class="fas fa-table"></i> Buat Ujian
-	</div>
-	<div class="card-body">
-		<form id="form" action="" method="POST">
-			Nama ujian:
-			<input type="text" name="nama_ujian" class="form-control"><br />
-			Selesai ujian:
-			<input type="date" name="ujian_selesai" class="form-control"><br />
-			<input type="submit" name="submit" value="Buat Ujian" class="btn btn-primary">
-		</form>
+<div class="main">
+	<!-- MAIN CONTENT -->
+	<div class="main-content">
+		<div class="container-fluid">
+			<h3 class="page-title">Daftar Ujian</h3>
+			<div class="panel">
+				<div class="panel-body">
+					<form id="form" action="" method="POST">
+						<div class="row">
+							<div class="col-md-6">
+								Nama ujian:
+								<input type="text" name="nama_ujian" class="form-control"><br />
+							</div>
+							<div class="col-md-6">
+								Selesai ujian:
+								<input type="date" name="ujian_selesai" class="form-control"><br />
+							</div>
+						</div>
+						
+						
+						<input type="submit" name="submit" value="Buat Ujian" class="btn btn-primary">
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

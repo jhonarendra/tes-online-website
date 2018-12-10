@@ -12,15 +12,19 @@
 		header('Location: ../../dosen');
 	}
 ?>
-<div class="card mb-3">
-	<div class="card-header">
-		<i class="fas fa-table"></i> Edit Ujian
-	</div>
-	<div class="card-body">
-		<form id="form" action="" method="POST">
-			Nama ujian:
-			<input type="text" name="nama_ujian" class="form-control" value="<?php echo $nama_ujian ?>"><br />
-			<input type="submit" name="submit" value="Edit Ujian" class="btn btn-primary">
-		</form>
+<div class="main">
+	<!-- MAIN CONTENT -->
+	<div class="main-content">
+		<div class="container-fluid">
+			<h3 class="page-title">Edit Ujian</h3>
+			<div class="panel">
+				<div class="panel-body">
+					<form id="form" action="" method="POST">
+						<input type="text" name="nama_ujian" class="form-control" value="<?php echo $nama_ujian ?>"><br />
+						<input type="submit" name="submit" value="Edit Ujian" class="btn btn-primary">
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

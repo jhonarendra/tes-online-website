@@ -4,11 +4,8 @@
 ## Introduction
 1. Import database yang ada di folder `include/db.sql`
 2. Atur koneksi `include/koneksi.php`
-
-## Screenshot
-![](https://raw.githubusercontent.com/Devajayantha/LatentSematicIndex-TesOnline/master/screenshot/img1.png)
-![](https://raw.githubusercontent.com/Devajayantha/LatentSematicIndex-TesOnline/master/screenshot/img2.png)
-![](https://raw.githubusercontent.com/Devajayantha/LatentSematicIndex-TesOnline/master/screenshot/img3.png)
+3. Set URL sendiri di `index.php`
+4. Set juga di `.htaccess` sesuai nama folder (kalo ngubah)
 
 ## Kelompok
 

@@ -1,3 +1,47 @@
+<?php
+	if(isset($_POST['username'])){
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+
+		$login_mhs = mysqli_query($conn, "SELECT * FROM tb_mhs WHERE username_mhs='$username' AND PASSWORD_mhs='$password'");
+		$numrow_mhs = mysqli_num_rows($login_mhs);
+
+		$login_dosen = mysqli_query($conn, "SELECT * FROM tb_dosen WHERE username_dosen='$username' AND PASSWORD_dosen='$password'");
+		$numrow_dosen = mysqli_num_rows($login_dosen);
+
+		echo $numrow_dosen;
+
+		if($numrow_mhs == 1 || $numrow_dosen == 1){
+			if($numrow_mhs == 1){
+				foreach ($login_mhs as $user_mhs) {
+					$_SESSION['nama_mhs'] = $user_mhs['nama_mhs'];
+					$_SESSION['id_mhs'] = $user_mhs['id_mhs'];
+				}
+				header("Location: mahasiswa");
+				exit();
+			} else {
+				echo "string";
+				foreach ($login_dosen as $user_dosen) {
+					$_SESSION['nama_dosen'] = $user_dosen['nama_dosen'];
+					$_SESSION['id_dosen'] = $user_dosen['id_dosen'];
+				}
+				header("Location: dosen");
+				exit();
+			}
+		} else {
+			echo "salah";
+		}
+	} else {
+		if(isset($_SESSION['nama_mhs'])||isset($_SESSION['nama_dosen'])){
+			if(isset($_SESSION['nama_mhs'])){
+				echo $_SESSION['nama_mhs'];
+				echo "<a href=\"mahasiswa\">Halaman Mahasiswa</a>";
+			} else {
+				echo $_SESSION['nama_dosen'];
+				echo "<a href=\"dosen\">Halaman Dosen</a>";
+			}
+		} else {
+?>
 <!doctype html>
 <html lang="en" class="fullscreen-bg">
 
@@ -42,9 +86,6 @@
 									<input type="password" class="form-control" id="signin-password" name="password" placeholder="Password">
 								</div>
 								<button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
-								<div class="bottom">
-									<span class="helper-text"><i class="fa fa-lock"></i> <a href="#">Forgot password?</a></span>
-								</div>
 							</form>
 						</div>
 					</div>
@@ -64,49 +105,8 @@
 </body>
 
 </html>
+
 <?php
-	if(isset($_POST['username'])){
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-
-		$login_mhs = mysqli_query($conn, "SELECT * FROM tb_mhs WHERE username_mhs='$username' AND PASSWORD_mhs='$password'");
-		$numrow_mhs = mysqli_num_rows($login_mhs);
-
-		$login_dosen = mysqli_query($conn, "SELECT * FROM tb_dosen WHERE username_dosen='$username' AND PASSWORD_dosen='$password'");
-		$numrow_dosen = mysqli_num_rows($login_dosen);
-
-		echo $numrow_dosen;
-
-		if($numrow_mhs == 1 || $numrow_dosen == 1){
-			if($numrow_mhs == 1){
-				foreach ($login_mhs as $user_mhs) {
-					$_SESSION['nama_mhs'] = $user_mhs['nama_mhs'];
-					$_SESSION['id_mhs'] = $user_mhs['id_mhs'];
-				}
-				header("Location: mahasiswa");
-				exit();
-			} else {
-				echo "string";
-				foreach ($login_dosen as $user_dosen) {
-					$_SESSION['nama_dosen'] = $user_dosen['nama_dosen'];
-					$_SESSION['id_dosen'] = $user_dosen['id_dosen'];
-				}
-				header("Location: dosen");
-				exit();
-			}
-		} else {
-			echo "salah";
-		}
-	} else {
-		if(isset($_SESSION['nama_mhs'])||isset($_SESSION['nama_dosen'])){
-			if(isset($_SESSION['nama_mhs'])){
-				echo $_SESSION['nama_mhs'];
-				echo "<a href=\"mahasiswa\">Halaman Mahasiswa</a>";
-			} else {
-				echo $_SESSION['nama_dosen'];
-				echo "<a href=\"dosen\">Halaman Dosen</a>";
-			}
-		} else {
 
 		}
 	}
