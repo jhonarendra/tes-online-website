@@ -3,7 +3,7 @@
 	<div class="main-content">
 		<div class="container-fluid">
 			<h3 class="page-title">Daftar Ujian</h3>
-			<a class="btn-success btn ml-4 mt-4" href="<?php echo $web_url."dosen/" ?>buat-ujian">Buat Ujian</a>
+			<a class="btn-success btn ml-4 mt-4" href="<?php echo $web_url."dosen/" ?>buat-ujian">Buat Ujian</a><br></br>
 			<div class="row">
 				<?php
 					$ujian = mysqli_query($conn, "SELECT * FROM tb_ujian INNER JOIN tb_dosen ON tb_ujian.`id_dosen`=tb_dosen.`id_dosen` WHERE status_ujian != 'Dihapus' ");

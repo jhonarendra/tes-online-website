@@ -44,7 +44,7 @@
 			return $a;
 		}
 		public function katadasar(){
-			$katadasar = file_get_contents('include/text-processing/katadasar.txt');
+			$katadasar = file_get_contents('katadasar.txt');
 			$katadasar = $this->tokenisasi($katadasar);
 			return $katadasar;
 		}

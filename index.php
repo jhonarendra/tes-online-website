@@ -4,7 +4,7 @@
 	$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 	// SET URL SESUAI FOLDER SENDIRI
-	$web_url = 'http://jhonarendra/LatentSematicIndex-TesOnline/';
+	$web_url = 'http://localhost/LatentSematicIndex-TesOnline/';
 
 	$segment = explode('/', $path);
 	$slug = $segment[2];
