@@ -1,9 +1,10 @@
 <?php
 	$id_ujian = $sluguri;
-	$semua_soal = mysqli_query($conn, "SELECT * FROM tb_soal WHERE id_ujian = $id_ujian ORDER BY nomor_soal");
+	$semua_soal = mysqli_query($conn, "SELECT * FROM tb_soal INNER JOIN tb_ujian ON tb_soal.`id_ujian`=tb_ujian.`id_ujian` WHERE tb_ujian.`id_ujian` = $id_ujian ORDER BY nomor_soal");
 	$nomor_soal = 0;
 	foreach ($semua_soal as $soal) {
 		$nomor_soal=$soal['nomor_soal'];
+		$nama_ujian = $soal['nama_ujian'];
 	}
 	$nomor_soal=$nomor_soal+1;
 	if(isset($_POST['submit'])){
@@ -21,6 +22,13 @@
 	<!-- MAIN CONTENT -->
 	<div class="main-content">
 		<div class="container-fluid">
+			<nav aria-label="breadcrumb" role="navigation">
+			  <ol class="breadcrumb" style="background:#fff">
+			    <li class="breadcrumb-item"><a href="<?php echo $web_url?>dosen">Dashboard</a></li>
+			    <li class="breadcrumb-item"><a href="<?php echo $web_url."dosen/".$id_ujian?>"><?php echo $nama_ujian;?></a></li>
+			    <li class="breadcrumb-item active" aria-current="page">Tambah Ujian</li>
+			  </ol>
+			</nav>
 			<h3 class="page-title">Tambah Soal</h3>
 			<form id="form" action="" method="POST">
 				<div class="row">

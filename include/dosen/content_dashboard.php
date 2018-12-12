@@ -2,6 +2,11 @@
 	<!-- MAIN CONTENT -->
 	<div class="main-content">
 		<div class="container-fluid">
+			<nav aria-label="breadcrumb" role="navigation">
+			  <ol class="breadcrumb" style="background:#fff">
+			    <li class="breadcrumb-item active" aria-current="page"><a href="<?php echo $web_url?>dosen">Dashboard</a></li>
+			  </ol>
+			</nav>
 			<h3 class="page-title">Daftar Ujian</h3>
 			<a class="btn-success btn ml-4 mt-4" href="<?php echo $web_url."dosen/" ?>buat-ujian">Buat Ujian</a><br></br>
 			<div class="row">
@@ -59,7 +64,7 @@
 					        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
 					          <span aria-hidden="true">×</span>
 					        </button>
-					        <h3 class="modal-title" id="exampleModalLabel">Yakin Hapus <?php echo $nilai['nama_ujian']?></h3>
+					        <h3 class="modal-title" id="exampleModalLabel">Yakin Hapus <?php echo $nilai['nama_ujian']?>?</h3>
 					      </div>
 					      <div class="modal-body">
 					      	Ujian yang dihapus tidak bisa dikembalikan lagi

@@ -11,6 +11,11 @@
 	<!-- MAIN CONTENT -->
 	<div class="main-content">
 		<div class="container-fluid">
+			<nav aria-label="breadcrumb" role="navigation">
+			  <ol class="breadcrumb" style="background:#fff">
+			    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+			  </ol>
+			</nav>
 			<h3 class="page-title">Daftar Ujian</h3>
 			<div class="row">
 				<?php
@@ -39,9 +44,15 @@
 
 								if(mysqli_num_rows($cek_kerjakan)==0){
 									$nilai_mhs = 'Belum dikoreksi';
+									if($nilai['status_ujian']=='Aktif'){
 							?>
-								<a class="btn btn-danger" href="mahasiswa/kerjakan/<?php echo $id_ujian?>"><i class="fa fa-check-circle"></i> Belum dikerjakan</a>
+										<a class="btn btn-danger" href="mahasiswa/kerjakan/<?php echo $id_ujian?>"><i class="fa fa-check-circle"></i> Belum dikerjakan</a>
 							<?php
+									} else {
+							?>
+										<a class="btn btn-danger" href="#"><i class="fa fa-check-circle"></i> Belum dikerjakan</a>
+							<?php
+									}
 								} else {
 									foreach ($cek_kerjakan as $key) {
 										$nilai_mhs = $key['nilai_mhs'];

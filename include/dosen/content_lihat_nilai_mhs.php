@@ -3,6 +3,10 @@
   $ceklsi = new LSI();
   $id_mhs = $slugurimhs;
   $id_ujian = $sluguri;
+  $ujian = mysqli_query($conn, "SELECT * FROM tb_ujian WHERE id_ujian = $id_ujian");
+  foreach ($ujian as $key) {
+    $nama_ujian = $key['nama_ujian'];
+  }
   $nilai_mhs = mysqli_query($conn, "SELECT * FROM tb_jawaban_mhs INNER JOIN tb_mhs ON tb_mhs.`id_mhs`=tb_jawaban_mhs.`id_mhs` INNER JOIN tb_soal ON tb_soal.`id_soal`=tb_jawaban_mhs.`id_soal` WHERE tb_jawaban_mhs.`id_mhs` = $id_mhs AND id_ujian=$id_ujian ORDER BY nomor_soal");
   foreach ($nilai_mhs as $nilai) {
     $nama_mhs=$nilai['nama_mhs'];
@@ -13,6 +17,14 @@
   <!-- MAIN CONTENT -->
   <div class="main-content">
     <div class="container-fluid">
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb" style="background:#fff">
+          <li class="breadcrumb-item"><a href="<?php echo $web_url?>dosen">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="<?php echo $web_url."dosen/".$id_ujian?>"><?php echo $nama_ujian;?></a></li>
+          <li class="breadcrumb-item active"><a href="<?php echo $web_url."dosen/".$id_ujian."/lihat-nilai"?>">Nilai Mahasiswa</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><?php echo $nama_mhs ?></li>
+        </ol>
+      </nav>
       <h3 class="page-title">Nilai Mahasiswa</h3>
       <div class="panel">
         <div class="panel-body">

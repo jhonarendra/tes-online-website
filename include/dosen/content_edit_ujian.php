@@ -17,6 +17,13 @@
 	<!-- MAIN CONTENT -->
 	<div class="main-content">
 		<div class="container-fluid">
+			<nav aria-label="breadcrumb" role="navigation">
+			  <ol class="breadcrumb" style="background:#fff">
+			    <li class="breadcrumb-item"><a href="<?php echo $web_url?>dosen">Dashboard</a></li>
+			    <li class="breadcrumb-item"><a href="<?php echo $web_url."dosen/".$id_ujian?>"><?php echo $nama_ujian;?></a></li>
+			    <li class="breadcrumb-item active" aria-current="page">Edit Ujian</li>
+			  </ol>
+			</nav>
 			<h3 class="page-title">Edit Ujian</h3>
 			<div class="panel" style="padding-top: 20px">
 				<div class="panel-body">
