@@ -94,8 +94,8 @@
 		public function getEigenValue($temp){
 			$ntengah = -$temp[0]-$temp[3];
 			$blkg = $temp[0]*$temp[3]-$temp[1]*$temp[2];
-			$lamda[0] = -1*(sqrt(pow($ntengah/2, 2)-$blkg)+$ntengah/2);
-			$lamda[1] = sqrt(pow($ntengah/2, 2)-$blkg)-$ntengah/2;
+			$lamda[0] = (sqrt(pow($ntengah/2, 2)-$blkg)+$ntengah/2)*-1;
+			$lamda[1] = (sqrt(pow($ntengah/2, 2)-$blkg)-$ntengah/2)*-1;
 			return $lamda;
 		}
 		public function getEigenVector($temp, $lamda){

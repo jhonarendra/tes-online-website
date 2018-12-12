@@ -6,7 +6,7 @@
 			<a class="btn-success btn ml-4 mt-4" href="<?php echo $web_url."dosen/" ?>buat-ujian">Buat Ujian</a><br></br>
 			<div class="row">
 				<?php
-					$ujian = mysqli_query($conn, "SELECT * FROM tb_ujian INNER JOIN tb_dosen ON tb_ujian.`id_dosen`=tb_dosen.`id_dosen` WHERE status_ujian != 'Dihapus' ");
+					$ujian = mysqli_query($conn, "SELECT *, YEAR(tgl_buat_ujian) AS tahun, MONTHNAME(tgl_buat_ujian) AS bulan, DAY(tgl_buat_ujian) AS tanggal, TIME(tgl_buat_ujian) AS jam FROM tb_ujian INNER JOIN tb_dosen ON tb_ujian.`id_dosen`=tb_dosen.`id_dosen` WHERE status_ujian != 'Dihapus' ORDER BY id_ujian DESC");
 					foreach ($ujian as $nilai) {
 						$id_ujian = $nilai['id_ujian'];
 				?>
@@ -42,6 +42,11 @@
 							  <a title="Hapus Ujian" href="dosen/<?php echo $nilai['id_ujian']?>/hapus" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 							  <a title="Lihat Nilai Mahasiswa" href="dosen/<?php echo $nilai['id_ujian']?>/lihat-nilai" class="btn btn-warning"><i class="fa fa-user"></i></a>
 							</div>
+							<p style="text-align: right; color:rgba(0,0,0,0.4);">
+							<?php
+								echo "<br />".$nilai['tanggal']." ".$nilai['bulan']." ".$nilai['tahun']." - ".$nilai['jam']
+							?>
+							</p>
 						</div>
 					</div>
 					<!-- END PANEL HEADLINE -->

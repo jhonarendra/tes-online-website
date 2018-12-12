@@ -46,11 +46,7 @@
 <html lang="en" class="fullscreen-bg">
 
 <head>
-<<<<<<< HEAD
-	<title>IR | E-Learning Metode LSI</title>
-=======
 	<title>Login | Tes Online LSI</title>
->>>>>>> cf867a3a91eed708bdbd835cd5408bf43f220819
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -77,7 +73,7 @@
 					<div class="left">
 						<div class="content">
 							<div class="header">
-								<div class="logo text-center"><img src="<?php echo $web_url."template"?>/img/new-logo.png" alt="Klorofil Logo"></div>
+								<div class="logo text-center"><img src="<?php echo $web_url."template"?>/img/icon2.png" alt="LSI Logo" style="width:100px;height:100px"></div>
 								<p class="lead">Login to your account</p>
 							</div>
 							<form class="form-auth-small" action="" method="POST">
