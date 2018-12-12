@@ -59,11 +59,11 @@ CREATE TABLE `tb_mhs` (
   `username_mhs` varchar(255) DEFAULT NULL,
   `password_mhs` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_mhs`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_mhs` */
 
-insert  into `tb_mhs`(`id_mhs`,`nama_mhs`,`username_mhs`,`password_mhs`) values (1,'Putu Jhonarendra','jhonarendra','jonajona'),(2,'Deva Jayantha','devajayantha','devadeva'),(3,'Veggy Priyanka','veggy','veggy'),(4,'Edy Maulana Vikri','edymv','edymv'),(5,'Dewa Gede','dewagede','dewagede');
+insert  into `tb_mhs`(`id_mhs`,`nama_mhs`,`username_mhs`,`password_mhs`) values (1,'Putu Jhonarendra','jhonarendra','jonajona'),(2,'Deva Jayantha','devajayantha','devadeva'),(3,'Veggy Priyanka','veggy','veggy'),(4,'Edy Maulana Vikri','edymv','edymv'),(5,'Dewa Gede','dewagede','dewagede'),(6,'Johnson','johnson','johnson');
 
 /*Table structure for table `tb_nilai_mhs` */
 
@@ -83,7 +83,7 @@ CREATE TABLE `tb_nilai_mhs` (
 
 /*Data for the table `tb_nilai_mhs` */
 
-insert  into `tb_nilai_mhs`(`id`,`id_ujian`,`id_mhs`,`nilai_mhs`) values (4,1,1,80),(5,1,2,79),(6,1,3,101),(7,1,4,20),(22,1,5,0),(24,10,1,0),(25,10,2,0),(26,10,3,0);
+insert  into `tb_nilai_mhs`(`id`,`id_ujian`,`id_mhs`,`nilai_mhs`) values (4,1,1,80),(5,1,2,79),(6,1,3,100),(7,1,4,20),(22,1,5,0),(24,10,1,0),(25,10,2,0),(26,10,3,0);
 
 /*Table structure for table `tb_soal` */
 
@@ -117,11 +117,11 @@ CREATE TABLE `tb_ujian` (
   PRIMARY KEY (`id_ujian`),
   KEY `id_dosen` (`id_dosen`),
   CONSTRAINT `tb_ujian_ibfk_1` FOREIGN KEY (`id_dosen`) REFERENCES `tb_dosen` (`id_dosen`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_ujian` */
 
-insert  into `tb_ujian`(`id_ujian`,`nama_ujian`,`tgl_buat_ujian`,`tgl_selesai_ujian`,`id_dosen`,`status_ujian`) values (1,'UAS STKI Lanjutan','2018-10-04 21:40:22','2018-10-05 21:40:26',1,'Aktif'),(9,'UTS STKI','2018-09-04 21:40:22','2018-09-04 21:40:22',1,'Dihapus'),(10,'Remidi STKI','2018-12-10 20:34:59','2018-12-11 00:00:00',1,'Aktif');
+insert  into `tb_ujian`(`id_ujian`,`nama_ujian`,`tgl_buat_ujian`,`tgl_selesai_ujian`,`id_dosen`,`status_ujian`) values (1,'UAS STKI Lanjutan','2018-10-04 21:40:22','2018-10-05 21:40:26',1,'Aktif'),(9,'UTS STKI','2018-09-04 21:40:22','2018-09-04 21:40:22',1,'Dihapus'),(10,'Remidi STKI','2018-12-10 20:34:59','2018-12-11 00:00:00',1,'Selesai'),(11,'tes','2018-12-11 00:00:00','2018-12-11 00:00:00',1,'Dihapus');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
