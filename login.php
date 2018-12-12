@@ -34,11 +34,9 @@
 	} else {
 		if(isset($_SESSION['nama_mhs'])||isset($_SESSION['nama_dosen'])){
 			if(isset($_SESSION['nama_mhs'])){
-				echo $_SESSION['nama_mhs'];
-				echo "<a href=\"mahasiswa\">Halaman Mahasiswa</a>";
+				header("Location: mahasiswa");
 			} else {
-				echo $_SESSION['nama_dosen'];
-				echo "<a href=\"dosen\">Halaman Dosen</a>";
+				header("Location: dosen");
 			}
 		} else {
 ?>
