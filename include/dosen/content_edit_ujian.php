@@ -8,7 +8,8 @@
 	
 	if(isset($_POST['submit'])){
 		$nama_ujian = $_POST['nama_ujian'];
-		$buat_ujian = mysqli_query($conn, "UPDATE tb_ujian SET nama_ujian = '$nama_ujian' WHERE id_ujian = $id_ujian");
+		$status_ujian = $_POST['status_ujian'];
+		$buat_ujian = mysqli_query($conn, "UPDATE tb_ujian SET nama_ujian = '$nama_ujian', status_ujian = '$status_ujian' WHERE id_ujian = $id_ujian");
 		header('Location: ../../dosen');
 	}
 ?>
@@ -17,10 +18,20 @@
 	<div class="main-content">
 		<div class="container-fluid">
 			<h3 class="page-title">Edit Ujian</h3>
-			<div class="panel">
+			<div class="panel" style="padding-top: 20px">
 				<div class="panel-body">
 					<form id="form" action="" method="POST">
-						<input type="text" name="nama_ujian" class="form-control" value="<?php echo $nama_ujian ?>"><br />
+						<div class="row">
+							<div class="col-md-6">
+								<input type="text" name="nama_ujian" class="form-control" value="<?php echo $nama_ujian ?>">
+							</div>
+							<div class="col-md-6">
+								<select name="status_ujian" class="form-control">
+									<option value="Aktif">Aktif</option>
+									<option value="Selesai">Selesai</option>
+								</select>
+							</div>
+						</div><br />
 						<input type="submit" name="submit" value="Edit Ujian" class="btn btn-primary">
 					</form>
 				</div>

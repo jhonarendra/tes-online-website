@@ -39,17 +39,41 @@
 							<div class="btn-group" role="group" aria-label="Basic example">
 							  <a title="Lihat Soal" href="dosen/<?php echo $nilai['id_ujian']?>" class="btn btn-primary"><i class="fa fa-eye"></i></a>
 							  <a title="Edit Ujian" href="dosen/<?php echo $nilai['id_ujian']?>/edit" class="btn btn-success"><i class="fa fa-pencil"></i></a>
-							  <a title="Hapus Ujian" href="dosen/<?php echo $nilai['id_ujian']?>/hapus" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+							  <a title="Hapus Ujian" href="#" data-toggle="modal" data-target="#nilaiModal<?php echo $nilai['id_ujian'] ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 							  <a title="Lihat Nilai Mahasiswa" href="dosen/<?php echo $nilai['id_ujian']?>/lihat-nilai" class="btn btn-warning"><i class="fa fa-user"></i></a>
 							</div>
-							<p style="text-align: right; color:rgba(0,0,0,0.4);">
-							<?php
-								echo "<br />".$nilai['tanggal']." ".$nilai['bulan']." ".$nilai['tahun']." - ".$nilai['jam']
-							?>
-							</p>
+						</div>
+						<div class="panel-footer">
+						<?php
+							echo $nilai['tanggal']." ".$nilai['bulan']." ".$nilai['tahun']." - ".$nilai['jam']
+						?>
 						</div>
 					</div>
 					<!-- END PANEL HEADLINE -->
+
+
+					<div class="modal fade" id="nilaiModal<?php echo $nilai['id_ujian'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">×</span>
+					        </button>
+					        <h3 class="modal-title" id="exampleModalLabel">Yakin Hapus <?php echo $nilai['nama_ujian']?></h3>
+					      </div>
+					      <div class="modal-body">
+					      	Ujian yang dihapus tidak bisa dikembalikan lagi
+					      </div>
+					      <div class="modal-footer">
+					      	<a class="btn btn-success" href="dosen/<?php echo $nilai['id_ujian']?>/hapus">Submit</a>
+					        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+
+
+
 				</div>
 				<?php
 					}
