@@ -1,17 +1,21 @@
 <?php
 	$id_ujian = $sluguri;
-	$semua_soal = mysqli_query($conn, "SELECT * FROM tb_soal INNER JOIN tb_ujian ON tb_soal.`id_ujian`=tb_ujian.`id_ujian` WHERE tb_ujian.`id_ujian` = $id_ujian ORDER BY nomor_soal");
+	$semua_soal = mysqli_query($conn, "SELECT * FROM tb_soal WHERE tb_soal.`id_ujian` = $id_ujian ORDER BY nomor_soal");
 	$nomor_soal = 0;
-	foreach ($semua_soal as $soal) {
-		$nomor_soal=$soal['nomor_soal'];
-		$nama_ujian = $soal['nama_ujian'];
+	$nama_ujians = mysqli_query($conn, "SELECT nama_ujian FROM tb_ujian WHERE id_ujian = $sluguri");
+	foreach ($nama_ujians as $key) {
+		$nama_ujian = $key['nama_ujian'];
 	}
+	foreach ($semua_soal as $soal) {
+		$nomor_soal = $soal['nomor_soal'];
+	}
+
 	$nomor_soal=$nomor_soal+1;
 	if(isset($_POST['submit'])){
 		for($i=0;$i<100;$i++){
 			if(isset($_POST['soal'.$i])){
 				$soal = $_POST['soal'.$i];
-				$semua_soal = mysqli_query($conn, "INSERT INTO tb_soal VALUES(null, $i, $id_ujian, '$soal')");
+				$semua_soal = mysqli_query($conn, "INSERT INTO tb_soal VALUES(null, $i, $id_ujian, '$soal', 'Aktif')");
 			}
 		}
 		header('Location: ../../dosen');

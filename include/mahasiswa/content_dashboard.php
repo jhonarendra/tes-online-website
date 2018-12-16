@@ -1,6 +1,6 @@
 <?php
   $id_mhs = $_SESSION['id_mhs'];
-  $ujian = mysqli_query($conn, "SELECT tb_ujian.* , tb_dosen.`nama_dosen` FROM tb_ujian INNER JOIN tb_dosen ON tb_dosen.`id_dosen`=tb_ujian.`id_dosen` WHERE status_ujian!='Dihapus'");
+  $ujian = mysqli_query($conn, "SELECT tb_ujian.* , tb_dosen.`nama_dosen` FROM tb_ujian INNER JOIN tb_dosen ON tb_dosen.`id_dosen`=tb_ujian.`id_dosen` WHERE status_ujian!='Dihapus' ORDER BY id_ujian DESC");
   $i=1; 
   foreach ($ujian as $nilai) {
     $nama_mhs=$nilai;
