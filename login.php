@@ -9,8 +9,6 @@
 		$login_dosen = mysqli_query($conn, "SELECT * FROM tb_dosen WHERE username_dosen='$username' AND PASSWORD_dosen='$password'");
 		$numrow_dosen = mysqli_num_rows($login_dosen);
 
-		echo $numrow_dosen;
-
 		if($numrow_mhs == 1 || $numrow_dosen == 1){
 			if($numrow_mhs == 1){
 				foreach ($login_mhs as $user_mhs) {
@@ -29,7 +27,7 @@
 				exit();
 			}
 		} else {
-			echo "salah";
+			header("Location: home?login=false");
 		}
 	} else {
 		if(isset($_SESSION['nama_mhs'])||isset($_SESSION['nama_dosen'])){
@@ -65,6 +63,15 @@
 <body>
 	<!-- WRAPPER -->
 	<div id="wrapper">
+		<?php
+			if(isset($_GET['login'])){
+		?>
+		<div class="alert alert-danger" role="alert" style="position: fixed; top:10px; width: 90%;left:5%">
+		  User tidak ditemukan
+		</div>
+		<?php
+			}
+		?>
 		<div class="vertical-align-wrap">
 			<div class="vertical-align-middle">
 				<div class="auth-box ">

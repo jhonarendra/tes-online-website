@@ -44,11 +44,12 @@
 			<h3 class="page-title">Kerjakan Ujian</h3>
 			<form id="form" action="" method="POST">
 			<?php
-				$semua_soal = mysqli_query($conn, "SELECT * FROM tb_soal INNER JOIN tb_ujian ON tb_soal.`id_ujian`=tb_ujian.`id_ujian` WHERE tb_ujian.`id_ujian`=$id_ujian ORDER BY nomor_soal");
+				$semua_soal = mysqli_query($conn, "SELECT * FROM tb_soal INNER JOIN tb_ujian ON tb_soal.`id_ujian`=tb_ujian.`id_ujian` WHERE tb_ujian.`id_ujian`=$id_ujian AND tb_soal.`status`!='Dihapus' ORDER BY nomor_soal");
 				foreach ($semua_soal as $soal) {
 			?>
 				<p><?php echo $soal['nomor_soal'].". ".$soal['soal']?></p>
-				<textarea class="form-control" type="text" name="jawaban_mhs<?php echo $soal['id_soal']?>" rows="5"></textarea>
+				<textarea id="textarea<?php echo $soal['id_soal']?>" class="form-control" type="text" name="jawaban_mhs<?php echo $soal['id_soal']?>" rows="5"></textarea>
+				
 				<br /><br />
 			<?php
 				}

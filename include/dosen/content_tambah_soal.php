@@ -26,7 +26,7 @@
 			  <ol class="breadcrumb" style="background:#fff">
 			    <li class="breadcrumb-item"><a href="<?php echo $web_url?>dosen">Dashboard</a></li>
 			    <li class="breadcrumb-item"><a href="<?php echo $web_url."dosen/".$id_ujian?>"><?php echo $nama_ujian;?></a></li>
-			    <li class="breadcrumb-item active" aria-current="page">Tambah Ujian</li>
+			    <li class="breadcrumb-item active" aria-current="page">Tambah Soal</li>
 			  </ol>
 			</nav>
 			<h3 class="page-title">Tambah Soal</h3>
