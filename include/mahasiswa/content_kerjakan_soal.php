@@ -49,6 +49,7 @@
 			?>
 				<p><?php echo $soal['nomor_soal'].". ".$soal['soal']?></p>
 				<textarea id="textarea<?php echo $soal['id_soal']?>" class="form-control" type="text" name="jawaban_mhs<?php echo $soal['id_soal']?>" rows="5"></textarea>
+				<p style="text-align: right;">Jumlah karakter: <span id="count<?php echo $soal['id_soal']?>">0</span></p>
 				
 				<br /><br />
 			<?php
@@ -56,6 +57,35 @@
 			?>
 				<input type="submit" name="submit" class="btn btn-success" />
 			</form>
+			<script type="text/javascript">
+				// $(document).ready(function() {
+				//     $("#textarea23").on('keyup', function() {
+				//         var words = this.value.match(/\S+/g).length;
+				//         if (words > 200) {
+				//             // Split the string on first 200 words and rejoin on spaces
+				//             var trimmed = $(this).val().split(/\s+/, 200).join(" ");
+				//             // Add a space at the end to keep new typing making new words
+				//             $(this).val(trimmed + " ");
+				//         }
+				//         else {
+				//             $('#count23').text(words);
+				//             // $('#word_left').text(200-words);
+				//         }
+				//     });
+				//  }); 
+
+				<?php
+					foreach ($semua_soal as $soal) {
+				?>
+					$(document).ready(function() {
+						$("#textarea<?php echo $soal['id_soal'] ?>").on('keyup', function() {
+							$('#count<?php echo $soal['id_soal']?>').text($(this).val().length);
+						});
+					}); 
+				<?php
+					}
+				?>
+			</script>
 		</div>
 	</div>
 </div>

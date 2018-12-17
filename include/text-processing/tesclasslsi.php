@@ -46,6 +46,7 @@
 	echo "Semua term<br />".json_encode($semua_term)."<br /><br />";
 
 	$matriksA = $lsi->matriksA($semua_term, $query, $input);
+
 	echo "Matriks A<br />";
 ?>
 	<table border="1">
@@ -210,7 +211,7 @@
 	echo "<br />Similarity<br />";
 	$similarity = $lsi->getSimilarity($matriksQ, $matriksV);
 	echo "sim(q,d1) = ".$similarity[0]."<br />";
-	echo "sim(q,d2) = ".$similarity[1];
+	echo "sim(q,d) = ".$similarity[1];
 ?>
 
 <script type="text/javascript">
