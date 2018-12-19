@@ -6,25 +6,35 @@
 			} else {
 				$query = explode(" ", $query);
 				$input = explode(" ", $input);
+
+				// Kalo data dari database ada array kosong di index 0
+                $query = array_slice($query, 1, sizeof($query));
+                $input = array_slice($input, 1, sizeof($input));
+                // Makanya dihapus
+
 				$semua_term = $this->getTerm($query, $input);
 				$matriksA = $this->matriksA($semua_term, $query, $input);
-				$temp = $this->matAxmatAT($matriksA, $semua_term);
 
-				$val = $this->getPersamaan($temp);
-				if($val[1]==0){
-					$similarity[1] = 100;
+				$temp = $this->matAxmatAT($matriksA, $semua_term);
+				if($temp[1] == 0){
+					$similarity[1] = 0;
 				} else {
-					$lamda = $this->getEigenValue($temp);
-					$eigenvector = $this->getEigenVector($temp, $lamda);
-					$matriksS = $this->getMatriksS($lamda);
-					$sInvers = $this->getMatriksSInvers($matriksS);
-					$pVec = $this->getPanjangVector($eigenvector);
-					$matriksV = $this->getMatriksV($eigenvector, $pVec);
-					$matriksU = $this->getMatriksU($semua_term, $matriksA, $matriksV, $sInvers);
-					$matriksQ = $this->getMatriksQ($semua_term, $matriksA, $matriksU, $sInvers);
-					$similarity = $this->getSimilarity($matriksQ, $matriksV);
-					$similarity[1] = $similarity[1]*100;
-					$similarity[1] = substr($similarity[1], 0, 4);
+					$val = $this->getPersamaan($temp);
+					if($val[1]==0){
+						$similarity[1] = 100;
+					} else {
+						$lamda = $this->getEigenValue($temp);
+						$eigenvector = $this->getEigenVector($temp, $lamda);
+						$matriksS = $this->getMatriksS($lamda);
+						$sInvers = $this->getMatriksSInvers($matriksS);
+						$pVec = $this->getPanjangVector($eigenvector);
+						$matriksV = $this->getMatriksV($eigenvector, $pVec);
+						$matriksU = $this->getMatriksU($semua_term, $matriksA, $matriksV, $sInvers);
+						$matriksQ = $this->getMatriksQ($semua_term, $matriksA, $matriksU, $sInvers);
+						$similarity = $this->getSimilarity($matriksQ, $matriksV);
+						$similarity[1] = $similarity[1]*100;
+						$similarity[1] = substr($similarity[1], 0, 4);
+					}
 				}
 			}
 			return $similarity[1];
