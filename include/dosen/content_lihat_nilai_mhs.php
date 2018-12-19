@@ -40,6 +40,7 @@
             <tbody>
               <?php
                 foreach ($nilai_mhs as $nilai) {
+                  $id_soal = $nilai['id_soal'];
               ?>
               <tr>
                 <td><?php echo $nilai['nomor_soal']?></td>
@@ -47,8 +48,11 @@
                 <td><?php echo $nilai['jawaban_mhs']?></td>
                 <td>
                   <a title="Lihat Similarity Jawaban" href="#" data-toggle="modal" data-target="#nilaiModal<?php echo $nilai['nomor_soal'] ?>"class="btn btn-warning">
-                  <i class="fa fa-eye"></i>
-                </a>  
+                    <i class="fa fa-eye"></i>
+                  </a>
+                  <a title="Lihat Perhitungan" href="<?php echo $web_url."dosen/"."$id_ujian"."/lihat-nilai/".$id_mhs."/perhitungan/".$id_soal;?>" class="btn btn-primary">
+                    <i class="fa fa-calculator"></i>
+                  </a>
                 </td>
               </tr>
               <div class="modal fade" id="nilaiModal<?php echo $nilai['nomor_soal'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -61,8 +65,18 @@
                       <h3 class="modal-title" id="exampleModalLabel">Kecocokan dengan mahasiswa lain</h3>
                     </div>
                     <div class="modal-body">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <b>Nama Mahasiswa</b>
+                        </div>
+                        <div class="col-md-2">
+                          <b>LSI</b>
+                        </div>
+                        <div class="col-md-2">
+                          <b>Jaccard</b>
+                        </div>
+                      </div>
                       <?php
-                        $id_soal = $nilai['id_soal'];
                         $query_lsi = $nilai['stem_jawaban_mhs'];
                         $mahasiswa_mengerjakan = mysqli_query($conn, "SELECT * FROM tb_jawaban_mhs INNER JOIN tb_mhs ON tb_jawaban_mhs.`id_mhs` = tb_mhs.`id_mhs` WHERE tb_jawaban_mhs.`id_mhs`!=$id_mhs AND tb_jawaban_mhs.`id_soal` = $id_soal");
                         $jml_mahasiswa_mengerjakan = mysqli_num_rows($mahasiswa_mengerjakan);
@@ -92,9 +106,19 @@
                             }
                             $sim = $irisan/$union;
                             $sim_percent = $sim*100;
-
-
-                            echo $mhs_lain['nama_mhs']." ".$ceklsi->runLSI($query_lsi, $input_lsi)."%"." - ".substr($sim_percent, 0, 4)."%<br />";
+                          ?>
+                            <div class="row">
+                              <div class="col-md-8">
+                                <?php echo $mhs_lain['nama_mhs']?>
+                              </div>
+                              <div class="col-md-2">
+                                <?php echo $ceklsi->runLSI($query_lsi, $input_lsi)."%";?>
+                              </div>
+                              <div class="col-md-2">
+                                <?php echo substr($sim_percent, 0, 4)."%";?>
+                              </div>
+                            </div>
+                          <?php
                           }
                         }
                       ?>

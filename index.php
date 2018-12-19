@@ -20,6 +20,9 @@
 	if (isset($segment[6])) {
 		$slugurimhsaksi = $segment[6];
 	}
+	if (isset($segment[7])) {
+		$slug7 = $segment[7];
+	}
 
 	if($slug=='mahasiswa'){
 		if(isset($_SESSION['nama_mhs'])){

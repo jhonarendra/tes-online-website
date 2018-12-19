@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="<?php echo $web_url.'template';?>/css/demo.css">
 
 	<script src="<?php echo $web_url.'template'?>/vendor/jquery/jquery.min.js"></script>
+		<script src="<?php echo $web_url.'template'?>/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
@@ -47,7 +48,11 @@
 								break;
 							case 'lihat-nilai': // http://localhost/dosen/{id_ujian}/lihat-nilai/{id_mhs}
 								if (isset($slugurimhs)) {
-									include 'include/dosen/content_lihat_nilai_mhs.php';
+									if(isset($slugurimhsaksi) && $slugurimhsaksi=="perhitungan" && isset($slug7)){
+										include 'include/dosen/content_perhitungan.php';
+									} else {
+										include 'include/dosen/content_lihat_nilai_mhs.php';
+									}
 								} else {
 									include 'include/dosen/content_nilai_mhs.php';
 								}
@@ -80,7 +85,6 @@
 		</div>
 		<!-- END WRAPPER -->
 		<!-- Javascript -->
-		<script src="<?php echo $web_url.'template'?>/vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="<?php echo $web_url.'template'?>/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 		<script src="<?php echo $web_url.'template'?>/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 		<script src="<?php echo $web_url.'template'?>/vendor/chartist/js/chartist.min.js"></script>
