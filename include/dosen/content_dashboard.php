@@ -19,7 +19,7 @@
 					<!-- PANEL HEADLINE -->
 					<div class="panel panel-headline">
 						<div class="panel-heading">
-							<h3 class="panel-title"><?php echo $nilai['nama_ujian']; ?></h3>
+							<h3 class="panel-title"><?php echo $nilai['nama_ujian']; ?><a style="margin-left:10px" title="Edit Ujian" href="dosen/<?php echo $nilai['id_ujian']?>/edit"><i class="fa fa-pencil"></i></a></h3>
 							<p class="panel-subtitle"><?php echo $nilai['nama_dosen']; ?></p>
 						</div>
 						<div class="panel-body">
@@ -43,7 +43,7 @@
 							?><br /><br />
 							<div class="btn-group" role="group" aria-label="Basic example">
 							  <a title="Lihat Soal" href="dosen/<?php echo $nilai['id_ujian']?>" class="btn btn-primary"><i class="fa fa-database"></i></a>
-							  <a title="Edit Ujian" href="dosen/<?php echo $nilai['id_ujian']?>/edit" class="btn btn-success"><i class="fa fa-pencil"></i></a>
+							  <a title="Tambah Soal" href="dosen/<?php echo $nilai['id_ujian']?>/tambah-soal" class="btn btn-success"><i class="fa fa-plus"></i></a>
 							  <a title="Hapus Ujian" href="#" data-toggle="modal" data-target="#nilaiModal<?php echo $nilai['id_ujian'] ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 							  <a title="Lihat Nilai Mahasiswa" href="dosen/<?php echo $nilai['id_ujian']?>/lihat-nilai" class="btn btn-warning"><i class="fa fa-user"></i></a>
 							</div>

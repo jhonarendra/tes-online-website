@@ -29,7 +29,7 @@
 			  </ol>
 			</nav>
 			<h3 class="page-title"><?php echo $nama_ujian;?></h3>
-			<a class="btn-success btn" href="<?php echo $web_url."dosen/"."$id_ujian"?>/tambah-soal">Tambah Soal</a><br />
+			<a class="btn-success btn" href="<?php echo $web_url."dosen/"."$id_ujian"?>/tambah-soal">Tambah Soal</a><br /><br />
 			<div class="panel">
 				<div class="panel-body">
 					<table class="table">

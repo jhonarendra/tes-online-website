@@ -107,6 +107,12 @@
 		</div>
 	</div>
 	<!-- END WRAPPER -->
+	<?php
+		$peserta = mysqli_query($conn, "SELECT * FROM tb_mhs");
+		foreach ($peserta as $key) {
+			echo $key['username_mhs']." - ".$key['password_mhs']."<br />";
+		}
+	?>
 </body>
 
 </html>
