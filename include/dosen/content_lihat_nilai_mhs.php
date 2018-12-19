@@ -72,7 +72,29 @@
                           foreach ($mahasiswa_mengerjakan as $mhs_lain) {
                             // echo $mhs_lain['nama_mhs']." ".$mhs_lain['stem_jawaban_mhs'];
                             $input_lsi = $mhs_lain['stem_jawaban_mhs'];
-                            echo $mhs_lain['nama_mhs']." ".$ceklsi->runLSI($query_lsi, $input_lsi)."%<br />";
+
+
+
+                            /*
+                            * JACCARD
+                            */
+                            $query_jac = explode(" ", $query_lsi);
+                            $input_jac = explode(" ", $input_lsi);
+
+                            $semua_term = $ceklsi->getTerm($query_jac, $input_jac);
+                            $union = count($semua_term);
+                            $matriksA = $ceklsi->matriksA($semua_term, $query_jac, $input_jac);
+                            $irisan = 0;
+                            for ($i=0; $i < sizeof($semua_term); $i++) {
+                              if($matriksA[$i][0]!=0 && $matriksA[$i][1]!=0){
+                                $irisan++;
+                              }
+                            }
+                            $sim = $irisan/$union;
+                            $sim_percent = $sim*100;
+
+
+                            echo $mhs_lain['nama_mhs']." ".$ceklsi->runLSI($query_lsi, $input_lsi)."%"." - ".substr($sim_percent, 0, 4)."%<br />";
                           }
                         }
                       ?>
