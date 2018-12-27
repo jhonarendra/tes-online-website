@@ -14,6 +14,11 @@
 	  $nama_mhs=$nilai['nama_mhs'];
 	}
 ?>
+<style type="text/css">
+  table td{
+    padding: 5px 10px;
+  }
+</style>
 <div class="main">
   <!-- MAIN CONTENT -->
   <div class="main-content">
@@ -62,7 +67,7 @@
                 }
                 echo "<br /><br />";
                 echo "Input<br />";
-                foreach ($query as $key) {
+                foreach ($input as $key) {
                   echo $key.", ";
                 }
                 echo "<br /><br />";
@@ -273,7 +278,7 @@
                 }
                 echo "<br /><br />";
                 echo "Input<br />";
-                foreach ($query as $key) {
+                foreach ($input as $key) {
                   echo $key.", ";
                 }
                 echo "<br /><br />";
@@ -284,13 +289,14 @@
                 }
                 echo "<br /><br />";
                 $matriksA = $ceklsi->matriksA($semua_term, $query, $input);
-              echo "Matriks A<br />";
+              echo "Term<br />";
                 ?>
                   <table border="1">
                     <tr>
                       <td></td>
                       <td>Query</td>
                       <td>Input</td>
+                      <td>Irisan</td>
                     </tr>
                 <?php
                   $irisan = 0;
@@ -300,11 +306,20 @@
                       <td><?php echo $semua_term[$i];?></td>
                       <td><?php echo $matriksA[$i][0];?></td>
                       <td><?php echo $matriksA[$i][1];?></td>
-                    </tr>     
                 <?php
                     if($matriksA[$i][0]!=0 && $matriksA[$i][1]!=0){
+                ?>
+                      <td>1</td>
+                <?php
                       $irisan++;
+                    } else {
+                ?>
+                      <td>0</td>
+                <?php
                     }
+                ?>
+                    </tr>
+                <?php
                   }
                 ?>
                   </table>
